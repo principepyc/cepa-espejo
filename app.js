@@ -832,7 +832,7 @@ function updateKioskLockUI() {
   }
 }
 
-// Vector Math Engine (Weighted 6D Euclidean Similarity)
+// Vector Math Engine (Weighted 6D Euclidean Similarity + Contrast Calibration)
 function computeUserVector() {
   if (userAnswers.length === 0) {
     return { ...CLASSIC_BASELINE };
@@ -840,7 +840,7 @@ function computeUserVector() {
   const vec = { acidez: 0, tanino: 0, cuerpo: 0, aroma: 0, frescura: 0, guarda: 0 };
   let weightSum = 0;
   userAnswers.forEach((ans) => {
-    const qWeight = ans.qIndex === 3 ? 1.35 : 1.0;
+    const qWeight = ans.qIndex === 3 ? 1.35 : ans.qIndex === 1 ? 1.15 : 1.0;
     const optAxes = QUESTIONS[ans.qIndex].options[ans.optIndex].axes;
     AXES_META.forEach((m) => {
       vec[m.key] += optAxes[m.key] * qWeight;
@@ -852,47 +852,156 @@ function computeUserVector() {
     vec[m.key] = Math.round(vec[m.key] / weightSum);
   });
 
-  const q0 = userAnswers.find((a) => a.qIndex === 0)?.optIndex;
-  const q1 = userAnswers.find((a) => a.qIndex === 1)?.optIndex;
-  const q2 = userAnswers.find((a) => a.qIndex === 2)?.optIndex;
-  const q3 = userAnswers.find((a) => a.qIndex === 3)?.optIndex;
+  const q0 = userAnswers.find((a) => a.qIndex === 0)?.optIndex ?? 0;
+  const q1 = userAnswers.find((a) => a.qIndex === 1)?.optIndex ?? 0;
+  const q2 = userAnswers.find((a) => a.qIndex === 2)?.optIndex ?? 0;
+  const q3 = userAnswers.find((a) => a.qIndex === 3)?.optIndex ?? 0;
+  const picks = [q0, q1, q2, q3];
 
-  // Check if the sommelier has active custom white/orange/sparkling wines in the cava
+  const count0 = picks.filter((x) => x === 0).length;
+  const count1 = picks.filter((x) => x === 1).length;
+  const count2 = picks.filter((x) => x === 2).length;
+  const count3 = picks.filter((x) => x === 3).length;
+
   const hasActiveCustomWhites = Object.keys(GRAPES).some(
     (k) => GRAPES[k].isCustom && GRAPES[k].category === "blanco" && appState.activeGrapes[k]
   );
+  const hasActiveCustomReds = Object.keys(GRAPES).some(
+    (k) => GRAPES[k].isCustom && GRAPES[k].category !== "blanco" && appState.activeGrapes[k]
+  );
 
-  // When the user picks fresh citrus/burrata (q1 === 2):
-  // If Torrontés is active and no custom whites are competing on that exact floral/sunny combo,
-  // or if all answers are light/floral, nudge gently toward white wine territory while preserving body/acidity differences.
-  if (q1 === 2) {
-    if (appState.activeGrapes.torrontes && !hasActiveCustomWhites && (q2 === 2 || q0 === 0 || q3 === 2)) {
-      return { acidez: 80, tanino: 15, cuerpo: 50, aroma: 97, frescura: 94, guarda: 56 };
-    }
-    vec.tanino = Math.max(15, Math.round(vec.tanino * 0.42));
-    vec.acidez = Math.min(94, vec.acidez + 5);
-    vec.frescura = Math.min(95, vec.frescura + 8);
-    vec.aroma = Math.min(97, vec.aroma + 4);
-  }
-  // Only apply Semillón or Criolla special vector projections when they are active in the event cava
+  // 1. Criolla Chica (Tinto de sed: ultra-fresco, liviano, terraza al sol + sorbo sedoso/frutal)
   if (
-    appState.activeGrapes.semillon &&
-    !hasActiveCustomWhites &&
-    ((q0 === 2 && q1 === 0 && (q2 === 0 || q2 === 1)) || (q1 === 2 && q2 === 1))
+    appState.activeGrapes.criolla &&
+    count3 <= 1 &&
+    ((q2 === 2 && q3 === 0) ||
+      (q0 === 0 && q2 === 2 && q1 !== 2 && q3 !== 2) ||
+      (q1 === 0 && q2 === 2 && q3 !== 3))
   ) {
-    return { acidez: 74, tanino: 19, cuerpo: 72, aroma: 78, frescura: 82, guarda: 86 };
-  }
-  if (appState.activeGrapes.criolla && q2 === 2 && q3 === 0) {
     return { acidez: 82, tanino: 28, cuerpo: 39, aroma: 82, frescura: 92, guarda: 51 };
   }
-  if ((q1 === 3 || q3 === 3) && (q2 === 1 || (q0 === 3 && q2 !== 3))) {
-    vec.acidez = Math.max(vec.acidez, 70);
-    vec.tanino = Math.min(92, vec.tanino + 5);
-    vec.aroma = Math.min(vec.aroma, 80);
-    vec.guarda = Math.min(95, vec.guarda + 4);
+
+  // 2. Territorio Blancos Aromáticos vs Blancos Cremosos Gastronómicos
+  if (q1 === 2 && count3 <= 1) {
+    if (q0 === 2 || q2 === 1 || q3 === 1) {
+      if (appState.activeGrapes.semillon && !hasActiveCustomWhites) {
+        return { acidez: 74, tanino: 19, cuerpo: 72, aroma: 79, frescura: 82, guarda: 85 };
+      }
+      if (!hasActiveCustomWhites && appState.activeGrapes.torrontes && (q0 === 0 || q2 === 2 || q3 === 2)) {
+        return { acidez: 80, tanino: 15, cuerpo: 50, aroma: 97, frescura: 94, guarda: 56 };
+      }
+      return {
+        acidez: Math.max(76, vec.acidez),
+        tanino: 20,
+        cuerpo: Math.max(66, Math.min(74, vec.cuerpo + 6)),
+        aroma: Math.max(84, vec.aroma),
+        frescura: 84,
+        guarda: Math.max(74, vec.guarda)
+      };
+    }
+    if (!hasActiveCustomWhites && appState.activeGrapes.torrontes) {
+      return { acidez: 80, tanino: 15, cuerpo: 50, aroma: 97, frescura: 94, guarda: 56 };
+    }
+    return {
+      acidez: Math.min(94, vec.acidez + 8),
+      tanino: 16,
+      cuerpo: Math.min(54, vec.cuerpo),
+      aroma: Math.min(97, vec.aroma + 6),
+      frescura: 94,
+      guarda: 56
+    };
+  }
+
+  if ((q0 === 0 && q2 === 2 && q3 === 2) || (q0 === 1 && q2 === 2 && q3 === 2 && q1 === 0) || (q0 === 0 && q1 === 0 && q3 === 2)) {
+    return { acidez: 80, tanino: 16, cuerpo: 50, aroma: 97, frescura: 94, guarda: 56 };
+  }
+  if (appState.activeGrapes.semillon && !hasActiveCustomWhites && q0 === 2 && q1 === 0 && (q2 === 0 || q2 === 1)) {
+    return { acidez: 74, tanino: 19, cuerpo: 72, aroma: 79, frescura: 82, guarda: 85 };
+  }
+
+  // 3. Territorio Intenso & Estructurado (Syrah Nocturno/Especiado vs Cabernet Sauvignon Clásico/Firme)
+  if (count3 >= 2 || (q3 === 3 && (q0 === 3 || q1 === 3 || q2 === 3)) || (q0 === 3 && q1 === 3) || (q1 === 3 && q2 === 3)) {
+    const syrahScore = (q2 === 3 ? 2.2 : 0) + (q3 === 3 ? 1.6 : 0) + (q0 === 2 || q1 === 0 ? 0.8 : 0);
+    const cabSauvScore = (q0 === 3 ? 2.0 : 0) + (q1 === 3 ? 1.7 : 0) + (q2 === 1 || q3 === 1 ? 1.5 : 0);
+
+    if (syrahScore >= cabSauvScore) {
+      return { acidez: 63, tanino: 82, cuerpo: 90, aroma: 86, frescura: 59, guarda: 88 };
+    } else {
+      return { acidez: 70, tanino: 90, cuerpo: 90, aroma: 80, frescura: 64, guarda: 94 };
+    }
+  }
+
+  if (count3 === 1) {
+    if (q2 === 3 && (q1 === 1 || q0 === 2)) {
+      return { acidez: 63, tanino: 82, cuerpo: 89, aroma: 86, frescura: 59, guarda: 88 };
+    }
+    if ((q0 === 3 && q2 === 1 && q3 === 1) || (q1 === 3 && q2 === 1 && q3 === 1)) {
+      return { acidez: 70, tanino: 89, cuerpo: 89, aroma: 81, frescura: 64, guarda: 93 };
+    }
+  }
+
+  // 4. Territorio Cálido, Jugoso & Sociable (Bonarda Argentina)
+  if (
+    count2 >= 2 ||
+    (q3 === 2 && (q0 === 2 || q1 === 0 || q1 === 1 || q2 === 2)) ||
+    (q0 === 2 && q2 === 2) ||
+    (q0 === 2 && q1 === 1 && q3 !== 1)
+  ) {
+    return { acidez: 68, tanino: 46, cuerpo: 64, aroma: 80, frescura: 76, guarda: 62 };
+  }
+
+  // 5. Territorio Herbal, Eléctrico & Gastronómico (Cabernet Franc o Blend de Tintas)
+  if (count1 >= 2 || (q3 === 1 && (q0 === 1 || q1 === 1 || q2 === 1))) {
+    if (hasActiveCustomReds && (q0 === 2 || q0 === 3 || q1 === 3 || q2 === 3)) {
+      return { acidez: 75, tanino: 75, cuerpo: 81, aroma: 88, frescura: 78, guarda: 86 };
+    }
+    return { acidez: 76, tanino: 72, cuerpo: 76, aroma: 88, frescura: 80, guarda: 85 };
+  }
+
+  // 6. Territorio Sutil, Elegante & Sedoso (Pinot Noir)
+  if (count0 >= 2 || (q3 === 0 && (q0 === 0 || q1 === 0 || q2 === 0))) {
+    return { acidez: 86, tanino: 32, cuerpo: 45, aroma: 90, frescura: 88, guarda: 78 };
   }
 
   return vec;
+}
+
+// Síntesis Personalizada: explica al invitado cómo sus 4 respuestas cotidianas llevaron a su cepa
+function buildPersonalSynthesis(grape) {
+  if (!userAnswers || userAnswers.length < 4 || isPartnerPass) {
+    return grape.malbecBridge;
+  }
+  const q0 = userAnswers.find((a) => a.qIndex === 0)?.optIndex ?? 0;
+  const q1 = userAnswers.find((a) => a.qIndex === 1)?.optIndex ?? 0;
+  const q2 = userAnswers.find((a) => a.qIndex === 2)?.optIndex ?? 0;
+  const q3 = userAnswers.find((a) => a.qIndex === 3)?.optIndex ?? 0;
+
+  const traitsQ0 = [
+    "los aromas delicados del té en hebras o el café filtrado",
+    "el carácter herbal del mate amargo",
+    "la calidez amable del café cremoso o el mate suave",
+    "la intensidad firme de un espresso bien negro"
+  ];
+  const traitsQ1 = [
+    "la suavidad cremosa del Brie o el chocolate con frutos rojos",
+    "la chispa sabrosa de la provoleta con orégano",
+    "la frescura vibrante de la burrata y los cítricos",
+    "la fuerza de los quesos duros picantes y el cacao amargo"
+  ];
+  const traitsQ2 = [
+    "la calma íntima de una cabaña junto al lago",
+    "la originalidad de un bar oculto o cena gourmet",
+    "la energía luminosa de una terraza o asado al sol",
+    "el magnetismo nocturno de un fogón bajo las estrellas"
+  ];
+  const traitsQ3 = [
+    "una caricia sedosa y liviana",
+    "buen cuerpo con un final fresco",
+    "pura fruta jugosa y perfumada",
+    "intensidad especiada que deje huella"
+  ];
+
+  return `Elegiste ${traitsQ0[q0]}, ${traitsQ1[q1]} y ${traitsQ2[q2]}, buscando en tu copa ${traitsQ3[q3]}. ${grape.malbecBridge}`;
 }
 
 function calculateAffinityScore(userVec, grapeObj) {
@@ -1130,7 +1239,7 @@ function renderMirrorGate() {
   document.getElementById("mirror-archetype-pill").textContent = `${winner.archetype} • ${pct}% Afinidad`;
   document.getElementById("mirror-hook-text").textContent = `"${winner.mirrorHook}"`;
   document.getElementById("mirror-plain-talk").textContent = winner.plainFeel;
-  document.getElementById("mirror-bridge-preview").textContent = winner.malbecBridge;
+  document.getElementById("mirror-bridge-preview").textContent = buildPersonalSynthesis(winner);
 
   const pills = getSignaturePills(winner);
   document.getElementById("mirror-delta-pills").innerHTML = pills
@@ -1220,7 +1329,10 @@ function renderRevealedResult(overrideGrapeKey) {
   }
 
   document.getElementById("res-plain-feel").textContent = ` ${g.plainFeel}`;
-  document.getElementById("res-bridge-copy").textContent = g.malbecBridge;
+  document.getElementById("res-bridge-copy").textContent =
+    !overrideGrapeKey || overrideGrapeKey === lastComputedResult.servedWinner.key
+      ? buildPersonalSynthesis(g)
+      : g.malbecBridge;
   document.getElementById("res-radar-holder").innerHTML = buildRadarSVG(g);
 
   document.getElementById("res-pill-food").textContent = g.food;
