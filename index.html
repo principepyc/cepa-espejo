@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#16090f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Cepa Espejo" />
+    <title>Cepa Espejo — Tu Vino sin Tecnicismos</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+
+    <!-- Floating Toast Notification -->
+    <div id="toast-pill" class="toast-pill" role="status" aria-live="polite">Listo</div>
+
+    <!-- App Shell (Mobile/Tablet Native Layout) -->
+    <div class="app-shell">
+
+        <!-- Top App Bar -->
+        <header class="app-topbar">
+            <div class="brand-cluster" onclick="handleBrandTap()"
+                title="Tocá para ir al inicio (Doble toque desbloquea Modo Sommelier)">
+                <div class="brand-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f5d491" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 3h8l-1 7a4 4 0 01-3 3.87V19h3v2H9v-2h3v-5.13A4 4 0 019 10L8 3z" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="brand-title">Cepa Espejo</div>
+                    <span id="brand-subtitle-text" class="brand-subtitle">Personalidad, paladar y vinos sin
+                        tecnicismos</span>
+                </div>
+            </div>
+
+            <div class="topbar-actions">
+                <button type="button" id="btn-topbar-cava" class="cava-pill" onclick="handleCavaPillClick()"
+                    title="Precargar los vinos y cepas del evento">
+                    <span class="cava-dot"></span>
+                    <span id="topbar-cava-count">Cava Hoy: 6</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Scrollable Viewport -->
+        <main class="app-viewport">
+
+            <!-- =========================================================
+           TAB 1: MODO EVENTO / STAND (CERO TECNICISMOS, < 40 SEG)
+           ========================================================= -->
+            <section id="view-evento" class="view-section active">
+
+                <!-- STAGE A: KIOSK WELCOME COVER -->
+                <div id="stage-welcome" class="hero-card">
+                    <div class="hero-badge" id="hero-event-badge">
+                        Degustación Cepa Espejo • 6 vinos descorchados hoy
+                    </div>
+
+                    <div class="hero-center">
+                        <div class="hero-emblem">
+                            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#f5d491"
+                                stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8 3h8l-1 7a4 4 0 01-3 3.87V19h3v2H9v-2h3v-5.13A4 4 0 019 10L8 3z" />
+                            </svg>
+                        </div>
+                        <h1 class="hero-title">
+                            Cada personalidad tiene su copa.<br />
+                            <span>Descubrí tu Cepa Espejo</span>
+                        </h1>
+                        <p class="hero-lead">
+                            <strong>Acá no hace falta saber de vinos ni de palabras difíciles.</strong> Contanos en 4
+                            toques cómo tomás tu café o mate y qué te gusta disfrutar, y descubrí qué vino del evento
+                            refleja tu estilo.
+                        </p>
+
+                        <div class="hero-steps-strip">
+                            <div class="hero-step-chip">
+                                <strong>Cero Jerga</strong>
+                                <span>Sin palabras raras</span>
+                            </div>
+                            <div class="hero-step-chip">
+                                <strong>35 Segundos</strong>
+                                <span>Solo 4 preguntas</span>
+                            </div>
+                            <div class="hero-step-chip">
+                                <strong>En Barra Hoy</strong>
+                                <span>Vinos reales del evento</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                        <button type="button" class="btn-primary-gold" onclick="startEventQuiz(false)">
+                            <span>✨ Descubrir mi Vino de Hoy</span>
+                            <span>→</span>
+                        </button>
+                        <button type="button" class="btn-secondary-wine" onclick="openOracleDirect()">
+                            <span>🔮 ¿Ya tenés una copa en la mano? Jugá al Oráculo</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STAGE B: 4 TACTILE DILEMMAS (ONE-HANDED THUMB ZONE) -->
+                <div id="stage-questions" class="quiz-stage" style="display:none;">
+                    <div class="quiz-header-bar">
+                        <div class="quiz-meta-row">
+                            <span id="q-step-pill" class="quiz-step-pill">1/4 • Tus Gustos</span>
+                            <span id="q-aura-label" class="quiz-aura-chip">Sin respuestas incorrectas</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="q-progress-fill" class="progress-fill" style="width: 25%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="question-prompt-box">
+                        <div id="q-partner-banner"
+                            style="display:none;margin-bottom:6px;padding:4px 10px;border-radius:8px;background:rgba(168,85,247,0.22);border:1px solid rgba(168,85,247,0.5);color:#f3e8ff;font-size:0.72rem;font-weight:700;">
+                            🥂 Turno del 2º Paladar (Pareja / Amigo)
+                        </div>
+                        <h2 id="q-heading" class="question-heading">Cargando pregunta...</h2>
+                    </div>
+
+                    <div id="q-options-grid" class="options-grid"></div>
+
+                    <div class="quiz-footer-nav">
+                        <button type="button" id="btn-q-prev" class="btn-ghost-sm" onclick="prevQuestionStep()">
+                            ← Anterior
+                        </button>
+                        <button type="button" class="btn-ghost-sm" onclick="resetToWelcome()">
+                            Salir al Inicio
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STAGE C: TRIZ INVERTED MIRROR REVEAL (NEUTRALIZES ANTI-GRAPE BIAS) -->
+                <div id="stage-mirror-gate" class="mirror-gate-card" style="display:none;">
+                    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                        <span class="quiz-step-pill">¡Listo! Así habla tu paladar</span>
+                        <div id="mirror-archetype-pill" class="mirror-archetype-pill">
+                            Arquetipo Sensorial
+                        </div>
+                    </div>
+
+                    <div style="margin:auto 0;">
+                        <h2
+                            style="font-family:var(--font-serif);font-size:1.35rem;color:var(--gold-bright);margin:0 0 6px;">
+                            Antes de revelarte el nombre de la uva...
+                        </h2>
+                        <p id="mirror-hook-text" class="mirror-quote"></p>
+
+                        <div
+                            style="text-align:left;background:rgba(245,212,145,0.1);border:1px solid var(--border-gold);border-radius:14px;padding:11px 13px;margin-bottom:10px;font-size:0.82rem;line-height:1.42;color:var(--text-primary);">
+                            <strong
+                                style="color:var(--gold-bright);display:block;font-size:0.7rem;text-transform:uppercase;margin-bottom:2px;">
+                                En simple (lo que vas a sentir en la copa):
+                            </strong>
+                            <span id="mirror-plain-talk"></span>
+                        </div>
+
+                        <div id="mirror-delta-pills" class="delta-pills-row"></div>
+
+                        <div
+                            style="text-align:left;background:rgba(0,0,0,0.34);border:1px solid var(--border-subtle);border-radius:14px;padding:11px 13px;font-size:0.79rem;line-height:1.42;color:var(--text-secondary);">
+                            <strong
+                                style="color:var(--gold-bright);display:block;margin-bottom:3px;font-size:0.71rem;text-transform:uppercase;">
+                                Por qué este estilo conecta con vos:
+                            </strong>
+                            <span id="mirror-bridge-preview"></span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                        <button type="button" class="btn-primary-gold" onclick="unveilWinnerGrape()">
+                            <span>🍷 Develar mi Cepa y qué Vino pedir en la Barra</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STAGE D: DUAL-LAYER REVEALED RESULT (GUEST + SOMMELIER DRAWER) -->
+                <div id="stage-result" class="result-card" style="display:none;">
+                    <div class="result-top-header">
+                        <div>
+                            <span id="res-archetype-badge"
+                                style="font-size:0.7rem;font-weight:700;text-transform:uppercase;color:var(--gold-main);letter-spacing:0.05em;">
+                                Arquetipo
+                            </span>
+                            <div class="grape-title-row">
+                                <span id="res-grape-emblem" class="grape-emblem-badge" aria-hidden="true"></span>
+                                <h2 id="res-grape-title" class="result-grape-title" style="margin:0;">Pinot Noir</h2>
+                            </div>
+                            <p id="res-region-sub" class="result-region-sub">Patagonia & Valle de Uco</p>
+                        </div>
+                        <div class="match-badge">
+                            <strong id="res-match-pct">94%</strong>
+                            <span>Afinidad</span>
+                        </div>
+                    </div>
+
+                    <!-- Duo Alchemy Result Banner (Shown when 2 people played together) -->
+                    <div id="res-duo-banner" class="duo-alchemy-banner" style="display:none;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <strong style="font-size:0.76rem;text-transform:uppercase;color:var(--gold-bright);">🥂
+                                Alquimia de Dos Paladares</strong>
+                            <span id="res-duo-harmony"
+                                style="font-size:0.72rem;font-weight:700;color:var(--emerald-ok);">88% Armonía</span>
+                        </div>
+                        <div class="duo-alchemy-chips">
+                            <span id="res-duo-p1">Persona 1: Pinot Noir</span>
+                            <span>+</span>
+                            <span id="res-duo-p2">Persona 2: Syrah</span>
+                        </div>
+                        <span id="res-duo-explanation"
+                            style="font-size:0.75rem;color:var(--text-secondary);line-height:1.35;"></span>
+                    </div>
+
+                    <!-- Pre-loaded Event Bottle Banner -->
+                    <div class="bottle-tonight-banner">
+                        <div style="flex:1;">
+                            <span class="bottle-tonight-label">🍾 Pedí esta etiqueta hoy en la barra</span>
+                            <div id="res-bottle-tonight" class="bottle-tonight-name">Pinot Noir Patagónico</div>
+                            <div id="res-bottle-note"
+                                style="font-size:0.75rem;color:var(--gold-bright);margin-top:2px;"></div>
+                        </div>
+                        <button type="button" onclick="openBarPassModal()"
+                            style="padding:9px 12px;border-radius:12px;border:1px solid var(--gold-bright);background:rgba(0,0,0,0.5);color:var(--gold-bright);font-size:0.73rem;font-weight:700;cursor:pointer;flex-shrink:0;">
+                            ✨ Pase<br />de Barra
+                        </button>
+                    </div>
+
+                    <!-- Plain-language "En Simple" box so the guest never feels intimidated -->
+                    <div
+                        style="padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid var(--border-subtle);font-size:0.8rem;line-height:1.42;color:var(--text-primary);">
+                        <strong style="color:var(--gold-bright);">Qué vas a sentir en la copa (en simple):</strong>
+                        <span id="res-plain-feel"></span>
+                    </div>
+
+                    <!-- Theoretical Match Notice (Only shown if #1 overall grape is not open tonight) -->
+                    <div id="res-theoretical-gem"
+                        style="display:none;padding:10px 12px;border-radius:12px;background:rgba(245,212,145,0.1);border:1px solid var(--border-gold);font-size:0.76rem;color:var(--text-secondary);line-height:1.4;">
+                    </div>
+
+                    <!-- 6-Axis Radar SVG + Gentle Sommelier Perspective -->
+                    <div class="radar-grid-box">
+                        <div id="res-radar-holder" class="radar-svg-wrap"></div>
+                        <div class="bridge-highlight-box">
+                            <strong>Por qué este vino va con vos</strong>
+                            <span id="res-bridge-copy"></span>
+                            <small style="display:block;margin-top:5px;font-size:0.68rem;color:var(--text-muted);">
+                                Área dorada: la forma de tu vino hoy • Línea punteada: un tinto tradicional promedio.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- 3 Quick Sensory Pills -->
+                    <div class="sensory-pills-grid">
+                        <div class="sensory-mini-card">
+                            <span class="lbl">🍽️ Con qué comerlo</span>
+                            <span id="res-pill-food" class="val"></span>
+                        </div>
+                        <div class="sensory-mini-card">
+                            <span class="lbl">🧀 Queso Ideal</span>
+                            <span id="res-pill-cheese" class="val"></span>
+                        </div>
+                        <div class="sensory-mini-card">
+                            <span class="lbl">☕ Equivalente en Café/Mate</span>
+                            <span id="res-pill-infusion" class="val"></span>
+                        </div>
+                    </div>
+
+                    <!-- Duo Mode CTA (Couple / Friends Match) -->
+                    <button type="button" id="btn-start-duo" class="btn-secondary-wine" onclick="startPartnerQuiz()">
+                        🥂 ¿Estás en pareja o con amigos? Sumar 2º Paladar en 20s
+                    </button>
+
+                    <!-- Primary Guest CTAs (Share Story Card + 1-Tap Reset for Next Guest) -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:2px;">
+                        <button type="button" class="btn-secondary-wine" onclick="openShareModal()">
+                            ✨ Carta Story / IG
+                        </button>
+                        <button type="button" class="btn-primary-gold" style="padding:13px 12px;font-size:0.88rem;"
+                            onclick="resetToWelcome()">
+                            Siguiente Invitado ↻
+                        </button>
+                    </div>
+
+                    <!-- Layer 2: Collapsible Sommelier Technical Drawer -->
+                    <div class="sommelier-drawer">
+                        <button type="button" class="sommelier-drawer-toggle" onclick="toggleSommelierDrawer()">
+                            <span>🍷 Ficha Técnica para el Sommelier (Opcional)</span>
+                            <span id="sommelier-drawer-chevron">▼ Desplegar</span>
+                        </button>
+                        <div id="sommelier-drawer-body" class="sommelier-drawer-body">
+                            <div
+                                style="padding:10px;border-radius:10px;background:rgba(0,0,0,0.35);border:1px solid var(--border-subtle);font-size:0.76rem;line-height:1.45;">
+                                <strong style="color:var(--gold-bright);display:block;">Temperatura, Copa y
+                                    Agua:</strong>
+                                <span id="res-somm-service" style="color:var(--text-secondary);"></span>
+                            </div>
+                            <div
+                                style="padding:10px;border-radius:10px;background:rgba(0,0,0,0.35);border:1px solid var(--border-subtle);font-size:0.76rem;line-height:1.45;">
+                                <strong style="color:var(--gold-bright);display:block;">Marcador Químico de Impacto
+                                    (WSET / CMS):</strong>
+                                <span id="res-somm-compound" style="color:var(--text-secondary);"></span>
+                            </div>
+                            <div
+                                style="font-size:0.72rem;font-weight:700;color:var(--gold-main);text-transform:uppercase;padding-top:4px;">
+                                Ranking Completo de Afinidad (Tocá otra cepa para verla):
+                            </div>
+                            <div id="res-somm-ranking" style="display:flex;flex-direction:column;gap:6px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- =========================================================
+           TAB 2: PRECARGA DE VINOS Y CEPAS DEL EVENTO (MI CAVA HOY)
+           ========================================================= -->
+            <section id="view-cava" class="view-section">
+                <div class="section-card">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+                        <div>
+                            <span
+                                style="font-size:0.7rem;font-weight:700;text-transform:uppercase;color:var(--gold-bright);">Panel
+                                de Control del Sommelier</span>
+                            <h2 style="font-family:var(--font-serif);font-size:1.35rem;margin:2px 0 0;">Precarga de
+                                Vinos del Evento</h2>
+                        </div>
+                        <button type="button" id="btn-kiosk-lock" class="btn-ghost-sm"
+                            style="border-color:var(--gold-main);color:var(--gold-bright);"
+                            onclick="toggleGuestKioskLock()">
+                            🔒 Modo Invitado
+                        </button>
+                    </div>
+                    <p style="font-size:0.78rem;color:var(--text-secondary);margin:0;line-height:1.42;">
+                        Antes de empezar el evento, encendé con el interruptor <strong>solo las cepas que vas a servir
+                            hoy</strong> y cargá el nombre exacto de cada vino/bodega. La app jamás recomendará una cepa
+                        que tengas apagada.
+                    </p>
+
+                    <!-- Event Metadata & Sommelier Signature -->
+                    <div style="display:grid;grid-template-columns:1fr;gap:8px;">
+                        <div>
+                            <label
+                                style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-main);display:block;margin-bottom:3px;">
+                                1. Nombre del Evento / Degustación / Casamiento:
+                            </label>
+                            <input id="input-event-name" type="text" class="input-luxury"
+                                placeholder="Ej: Cata Privada en Palermo" onchange="updateEventName(this.value)" />
+                        </div>
+                        <div>
+                            <label
+                                style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-main);display:block;margin-bottom:3px;">
+                                2. Tu Firma de Sommelier / @Instagram (Sale en las Stories):
+                            </label>
+                            <input id="input-sommelier-sig" type="text" class="input-luxury"
+                                placeholder="Ej: Somm. @tu_instagram" onchange="updateSommelierSignature(this.value)" />
+                        </div>
+                    </div>
+
+                    <!-- Quick Event Presets -->
+                    <div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:2px;">
+                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('all6')">Activar 6
+                            Clásicas</button>
+                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('all8')">Activar
+                            Todas</button>
+                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('tintos')">Solo
+                            Tintos</button>
+                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('custom_only')">✨ Solo Mis
+                            Vinos / Blends</button>
+                        <button type="button" class="btn-ghost-sm" onclick="resetEventStats()">Reiniciar Conteo
+                            (0)</button>
+                    </div>
+
+                    <!-- Live Stand Metrics + B2B Export -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                        <div
+                            style="background:rgba(0,0,0,0.38);border:1px solid var(--border-subtle);border-radius:12px;padding:10px;">
+                            <span style="font-size:0.68rem;color:var(--text-muted);display:block;">Invitados Perfilados
+                                Hoy</span>
+                            <strong id="stat-total-guests" style="font-size:1.3rem;color:var(--gold-bright);">0</strong>
+                        </div>
+                        <div
+                            style="background:rgba(0,0,0,0.38);border:1px solid var(--border-subtle);border-radius:12px;padding:10px;">
+                            <span style="font-size:0.68rem;color:var(--text-muted);display:block;">Cepa Favorita del
+                                Público</span>
+                            <strong id="stat-top-grape" style="font-size:0.86rem;color:var(--emerald-ok);">Sin datos
+                                aún</strong>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-secondary-wine" onclick="exportB2BEventReport()">
+                        📊 Copiar Informe Ejecutivo para la Bodega / Cliente
+                    </button>
+                </div>
+
+                <!-- Custom Grape / Blend Creator Card -->
+                <div class="section-card" style="border-color:var(--border-gold);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+                        <div>
+                            <span
+                                style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-bright);">Espacio
+                                Libre para tu Evento</span>
+                            <h3 style="font-family:var(--font-serif);font-size:1.15rem;margin:2px 0 0;">¿Tenés un Blend
+                                u otra Cepa?</h3>
+                        </div>
+                        <button type="button" id="btn-toggle-creator" class="btn-primary-gold"
+                            style="width:auto;padding:8px 14px;font-size:0.78rem;" onclick="toggleCustomGrapeCreator()">
+                            ➕ Cargar Vino / Blend
+                        </button>
+                    </div>
+                    <p style="font-size:0.76rem;color:var(--text-secondary);margin:0;line-height:1.4;">
+                        Agregá Blends de Tintas, Blends de Blancas, Naranjos, Espumantes o cualquier variedad especial
+                        (Tannat, Merlot, Chardonnay, Petit Verdot) para que entren en el juego de hoy.
+                    </p>
+
+                    <div id="custom-grape-creator"
+                        style="display:none;flex-direction:column;gap:10px;padding-top:10px;border-top:1px solid var(--border-subtle);">
+                        <input id="cg-editing-id" type="hidden" value="" />
+                        <div>
+                            <span
+                                style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-main);display:block;margin-bottom:5px;">
+                                Plantillas rápidas en 1 toque (autocompletan el perfil):
+                            </span>
+                            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                                <button type="button" class="btn-ghost-sm"
+                                    onclick="fillCustomTemplate('blend_tintas')">🍷 Blend de Tintas</button>
+                                <button type="button" class="btn-ghost-sm"
+                                    onclick="fillCustomTemplate('blend_blancas')">🥂 Blend de Blancas</button>
+                                <button type="button" class="btn-ghost-sm" onclick="fillCustomTemplate('naranjo')">🍊
+                                    Vino Naranjo</button>
+                                <button type="button" class="btn-ghost-sm" onclick="fillCustomTemplate('espumante')">🍾
+                                    Espumante / Pet-Nat</button>
+                                <button type="button" class="btn-ghost-sm" onclick="fillCustomTemplate('tannat')">🍇
+                                    Tannat / Petit Verdot</button>
+                                <button type="button" class="btn-ghost-sm" onclick="fillCustomTemplate('chardonnay')">🍐
+                                    Chardonnay / Viognier</button>
+                                <button type="button" class="btn-ghost-sm"
+                                    onclick="fillCustomTemplate('malbec_autor')">🍇 Malbec de Autor</button>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:1fr;gap:8px;">
+                            <div>
+                                <label
+                                    style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
+                                    Nombre de la Cepa, Corte o Estilo:
+                                </label>
+                                <input id="cg-name" type="text" class="input-luxury"
+                                    placeholder="Ej: Blend de Tintas (Malbec • Cab Franc • Syrah)" />
+                            </div>
+
+                            <div>
+                                <label
+                                    style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
+                                    Etiqueta / Bodega que vas a servir hoy:
+                                </label>
+                                <input id="cg-bottle" type="text" class="input-luxury"
+                                    placeholder="Ej: Clos de los Siete / Bressia Conjuro" />
+                            </div>
+
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                                <div>
+                                    <label
+                                        style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
+                                        Familia Visual:
+                                    </label>
+                                    <select id="cg-category" class="input-luxury">
+                                        <option value="intenso">Tinto con Carácter / Blend Tinto</option>
+                                        <option value="sutil">Tinto Sutil / Rosado / Jugoso</option>
+                                        <option value="blanco">Blanco / Blend Blanco / Naranjo / Espumante</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label
+                                        style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
+                                        Región / Origen:
+                                    </label>
+                                    <input id="cg-region" type="text" class="input-luxury"
+                                        placeholder="Ej: Valle de Uco, Mendoza" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label
+                                    style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
+                                    Arquetipo de Personalidad del Invitado:
+                                </label>
+                                <input id="cg-archetype" type="text" class="input-luxury"
+                                    placeholder="Ej: El Sofisticado, Armónico y Multidimensional" />
+                            </div>
+
+                            <div>
+                                <label
+                                    style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
+                                    En simple (¿Qué va a sentir el invitado en la copa?):
+                                </label>
+                                <input id="cg-plain" type="text" class="input-luxury"
+                                    placeholder="Ej: Un corte equilibrado donde la fruta jugosa se une con especias y un final sedoso." />
+                            </div>
+
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                                <div>
+                                    <label
+                                        style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
+                                        🍽️ Con qué comerlo:
+                                    </label>
+                                    <input id="cg-food" type="text" class="input-luxury"
+                                        placeholder="Ej: Carnes braseadas o pastas rellenas." />
+                                </div>
+                                <div>
+                                    <label
+                                        style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
+                                        🧀 Queso ideal:
+                                    </label>
+                                    <input id="cg-cheese" type="text" class="input-luxury"
+                                        placeholder="Ej: Provoleta, Sardo o Brie." />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4 Sensory Sliders for Vector Matching -->
+                        <div
+                            style="background:rgba(0,0,0,0.35);border:1px solid var(--border-subtle);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;">
+                            <span
+                                style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-bright);">
+                                Calibración del Vino (Para el cálculo automático de afinidad):
+                            </span>
+
+                            <div>
+                                <div style="display:flex;justify-content:space-between;font-size:0.73rem;">
+                                    <span>Frescura / Acidez</span>
+                                    <strong id="cg-val-acidez" style="color:var(--gold-bright);">74%</strong>
+                                </div>
+                                <input id="cg-acidez" type="range" min="20" max="98" value="74"
+                                    style="width:100%;accent-color:#f5d491;"
+                                    oninput="document.getElementById('cg-val-acidez').textContent=this.value+'%'" />
+                            </div>
+
+                            <div>
+                                <div style="display:flex;justify-content:space-between;font-size:0.73rem;">
+                                    <span>Textura / Agarre Tánico (Bajo en blancos, Alto en tintos firmes)</span>
+                                    <strong id="cg-val-tanino" style="color:var(--gold-bright);">76%</strong>
+                                </div>
+                                <input id="cg-tanino" type="range" min="10" max="96" value="76"
+                                    style="width:100%;accent-color:#f5d491;"
+                                    oninput="document.getElementById('cg-val-tanino').textContent=this.value+'%'" />
+                            </div>
+
+                            <div>
+                                <div style="display:flex;justify-content:space-between;font-size:0.73rem;">
+                                    <span>Cuerpo / Volumen en Boca</span>
+                                    <strong id="cg-val-cuerpo" style="color:var(--gold-bright);">84%</strong>
+                                </div>
+                                <input id="cg-cuerpo" type="range" min="30" max="96" value="84"
+                                    style="width:100%;accent-color:#f5d491;"
+                                    oninput="document.getElementById('cg-val-cuerpo').textContent=this.value+'%'" />
+                            </div>
+
+                            <div>
+                                <div style="display:flex;justify-content:space-between;font-size:0.73rem;">
+                                    <span>Intensidad Aromática / Perfume</span>
+                                    <strong id="cg-val-aroma" style="color:var(--gold-bright);">88%</strong>
+                                </div>
+                                <input id="cg-aroma" type="range" min="50" max="99" value="88"
+                                    style="width:100%;accent-color:#f5d491;"
+                                    oninput="document.getElementById('cg-val-aroma').textContent=this.value+'%'" />
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn-primary-gold" onclick="saveCustomGrapeToCava()">
+                            ✨ Guardar e Incorporar a Mi Cava Hoy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pre-load Bottles List -->
+                <div id="cava-stock-list" style="display:flex;flex-direction:column;gap:10px;padding-bottom:16px;">
+                </div>
+            </section>
+
+            <!-- =========================================================
+           TAB 3: GUÍA DE CEPAS Y ESTILOS
+           ========================================================= -->
+            <section id="view-catalogo" class="view-section">
+                <div class="section-card">
+                    <h2 style="font-family:var(--font-serif);font-size:1.35rem;margin:0;">Guía de Cepas y Personalidades
+                    </h2>
+                    <p style="font-size:0.78rem;color:var(--text-secondary);margin:0;">
+                        Explicaciones en simple para el invitado + apuntes de servicio para vos.
+                    </p>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                        <button type="button" id="cat-filter-all" class="btn-ghost-sm"
+                            style="background:var(--gold-main);color:#1a080f;" onclick="setCatalogFilter('all')">Todas
+                            (8)</button>
+                        <button type="button" id="cat-filter-sutil" class="btn-ghost-sm"
+                            onclick="setCatalogFilter('sutil')">Tintas Sutiles y Sedosas</button>
+                        <button type="button" id="cat-filter-intenso" class="btn-ghost-sm"
+                            onclick="setCatalogFilter('intenso')">Tintas con Carácter</button>
+                        <button type="button" id="cat-filter-blanco" class="btn-ghost-sm"
+                            onclick="setCatalogFilter('blanco')">Blancas Gastronómicas</button>
+                    </div>
+                </div>
+
+                <div id="catalog-cards-container"
+                    style="display:flex;flex-direction:column;gap:10px;padding-bottom:12px;"></div>
+            </section>
+
+            <!-- =========================================================
+           TAB 4: JUEGO DEL ORÁCULO (INVITADOS) & CATA A CIEGAS (SOMM)
+           ========================================================= -->
+            <section id="view-ciegas" class="view-section">
+                <div class="section-card">
+                    <div id="ciegas-mode-selector" class="mode-segmented-control">
+                        <button type="button" id="seg-btn-oracle" class="seg-btn active"
+                            onclick="switchBlindMode('oracle')">
+                            🔮 Oráculo en 1 Sorbo (Invitados)
+                        </button>
+                        <button type="button" id="seg-btn-wset" class="seg-btn" onclick="switchBlindMode('wset')">
+                            🎓 Entrenador WSET (Sommelier)
+                        </button>
+                    </div>
+
+                    <!-- SUB-VIEW A: MODO ORÁCULO SINESTÉSICO PARA INVITADOS (CERO TECNICISMOS) -->
+                    <div id="subview-oracle" style="display:flex;flex-direction:column;gap:12px;">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+                            <div>
+                                <span
+                                    style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-bright);">Juego
+                                    sin palabras técnicas</span>
+                                <h2 style="font-family:var(--font-serif);font-size:1.3rem;margin:2px 0 4px;">El Oráculo
+                                    de tu Copa</h2>
+                            </div>
+                            <button type="button" class="btn-ghost-sm" onclick="resetToWelcome(); switchTab('evento');">
+                                ← Volver al Inicio
+                            </button>
+                        </div>
+                        <p style="font-size:0.78rem;color:var(--text-secondary);margin:0;line-height:1.4;">
+                            Dale un sorbo a la copa misteriosa que te sirvió el sommelier y respondé con tu instinto
+                            estas 3 sensaciones:
+                        </p>
+
+                        <div id="oracle-questions-box" style="display:flex;flex-direction:column;gap:10px;"></div>
+
+                        <div id="oracle-result-box"
+                            style="display:none;padding:14px;border-radius:14px;background:rgba(143,22,59,0.35);border:1.5px solid var(--gold-bright);text-align:center;">
+                            <span
+                                style="font-size:0.7rem;text-transform:uppercase;color:var(--gold-bright);font-weight:700;">Sensación
+                                Decodificada</span>
+                            <h3 id="oracle-res-grape"
+                                style="font-family:var(--font-serif);font-size:1.65rem;color:#fff;margin:4px 0;"></h3>
+                            <p id="oracle-res-bottle"
+                                style="font-size:0.84rem;font-weight:700;color:var(--gold-bright);margin:0 0 6px;"></p>
+                            <p id="oracle-res-desc"
+                                style="font-size:0.78rem;color:var(--text-secondary);line-height:1.4;margin:0 0 12px;">
+                            </p>
+                            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">
+                                <button type="button" class="btn-ghost-sm"
+                                    style="border-color:var(--gold-bright);color:var(--gold-bright);"
+                                    onclick="openBarPassModal()">
+                                    ✨ Ver Pase de Barra
+                                </button>
+                                <button type="button" class="btn-ghost-sm" onclick="resetOracleGame()">
+                                    Jugar con Otra Copa ↻
+                                </button>
+                                <button type="button" class="btn-ghost-sm"
+                                    onclick="resetToWelcome(); switchTab('evento');">
+                                    ← Ir al Test de Personalidad
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-VIEW B: ENTRENADOR DEDUCTIVO WSET / CMS PARA ESTUDIO -->
+                    <div id="subview-wset" style="display:none;flex-direction:column;gap:10px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <div>
+                                <span
+                                    style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-bright);">Práctica
+                                    Profesional</span>
+                                <h2 style="font-family:var(--font-serif);font-size:1.3rem;margin:2px 0 0;">Cata
+                                    Deductiva a Ciegas</h2>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span
+                                    style="font-size:0.76rem;padding:6px 10px;border-radius:10px;background:rgba(0,0,0,0.4);border:1px solid var(--border-gold);color:var(--gold-bright);font-weight:700;">
+                                    Aciertos: <span id="blind-score-badge">0/0</span>
+                                </span>
+                                <button type="button" class="btn-ghost-sm"
+                                    style="border-color:var(--gold-main);color:var(--gold-bright);"
+                                    onclick="nextBlindRound()">
+                                    Nueva Copa ↻
+                                </button>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;flex-direction:column;gap:8px;">
+                            <div
+                                style="padding:11px;border-radius:12px;background:rgba(0,0,0,0.35);border:1px solid var(--border-subtle);">
+                                <div
+                                    style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-main);margin-bottom:4px;">
+                                    1. Fase Visual</div>
+                                <div id="blind-sight-text"
+                                    style="font-size:0.82rem;color:var(--text-primary);line-height:1.4;"></div>
+                            </div>
+
+                            <div
+                                style="padding:11px;border-radius:12px;background:rgba(0,0,0,0.35);border:1px solid var(--border-subtle);">
+                                <div
+                                    style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                                    <span
+                                        style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-main);">2.
+                                        Fase Olfativa (Nariz)</span>
+                                    <button type="button" class="btn-ghost-sm" style="padding:4px 9px;font-size:0.7rem;"
+                                        onclick="revealBlindStage('nose')">Revelar Nariz</button>
+                                </div>
+                                <div id="blind-nose-text"
+                                    style="font-size:0.82rem;color:var(--text-muted);line-height:1.4;"></div>
+                            </div>
+
+                            <div
+                                style="padding:11px;border-radius:12px;background:rgba(0,0,0,0.35);border:1px solid var(--border-subtle);">
+                                <div
+                                    style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                                    <span
+                                        style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--gold-main);">3.
+                                        Fase Gustativa (Boca)</span>
+                                    <button type="button" class="btn-ghost-sm" style="padding:4px 9px;font-size:0.7rem;"
+                                        onclick="revealBlindStage('palate')">Revelar Boca</button>
+                                </div>
+                                <div id="blind-palate-text"
+                                    style="font-size:0.82rem;color:var(--text-muted);line-height:1.4;"></div>
+                            </div>
+                        </div>
+
+                        <div id="blind-feedback-box"
+                            style="display:none;padding:12px;border-radius:12px;background:rgba(0,0,0,0.5);border:1.5px solid var(--gold-main);">
+                            <strong id="blind-feedback-title"
+                                style="display:block;font-size:0.86rem;margin-bottom:4px;"></strong>
+                            <span id="blind-feedback-body"
+                                style="font-size:0.78rem;color:var(--text-secondary);line-height:1.4;"></span>
+                        </div>
+
+                        <div
+                            style="font-size:0.72rem;font-weight:700;text-transform:uppercase;color:var(--text-muted);">
+                            ¿Qué variedad hay en la copa?
+                        </div>
+                        <div id="blind-choices-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Bottom Navigation Bar (Thumb Zone) -->
+        <nav id="app-bottomnav" class="app-bottomnav" aria-label="Navegación principal">
+            <button type="button" id="nav-evento" class="nav-tab active" onclick="switchTab('evento')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8 3h8l-1 7a4 4 0 01-3 3.87V19h3v2H9v-2h3v-5.13A4 4 0 019 10L8 3z" />
+                </svg>
+                <span>Test Invitado</span>
+            </button>
+
+            <button type="button" id="nav-cava" class="nav-tab" onclick="switchTab('cava')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Precargar Cava</span>
+            </button>
+
+            <button type="button" id="nav-catalogo" class="nav-tab" onclick="switchTab('catalogo')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span>Guía de Cepas</span>
+            </button>
+
+            <button type="button" id="nav-ciegas" class="nav-tab" onclick="switchTab('ciegas')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <span>Oráculo / Cata</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- MODAL 1: PASE LUMINOSO DE BARRA (3-METER VISUAL PASS FOR SOMMELIER) -->
+    <div id="bar-pass-modal" class="modal-backdrop" onclick="if(event.target===this) closeBarPassModal()">
+        <div id="bar-pass-card" class="bar-pass-card">
+            <span id="bar-pass-code" class="bar-pass-code">PASE DE BARRA • CEPA ESPEJO</span>
+            <div id="bar-pass-symbol" class="bar-pass-symbol"></div>
+            <h3 id="bar-pass-grape" class="bar-pass-grape">Pinot Noir</h3>
+            <div id="bar-pass-bottle"
+                style="font-size:1rem;font-weight:700;color:#fff;background:rgba(0,0,0,0.45);padding:8px 14px;border-radius:12px;">
+            </div>
+            <p style="font-size:0.78rem;color:rgba(255,255,255,0.9);margin:4px 0 10px;">
+                Mostrale esta pantalla al Sommelier en la barra para que te sirva tu copa ideal.
+            </p>
+            <button type="button" class="btn-primary-gold" style="background:#fff;color:#14060c;"
+                onclick="closeBarPassModal()">
+                Listo, volver a mi ficha
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 2: TAROT STORY CARD 9:16 GENERATOR (<canvas> PNG + SHARE) -->
+    <div id="share-modal" class="modal-backdrop" onclick="if(event.target===this) closeShareModal()">
+        <div class="share-story-card">
+            <div
+                style="font-size:0.72rem;font-weight:700;text-transform:uppercase;color:var(--gold-bright);margin-bottom:8px;">
+                ✨ Tu Carta Espejo para Instagram / WhatsApp
+            </div>
+            <canvas id="tarot-story-canvas" width="720" height="1120"
+                style="width:100%;max-width:250px;height:auto;border-radius:16px;border:1px solid var(--border-gold);margin:0 auto 12px;display:block;box-shadow:0 10px 28px rgba(0,0,0,0.7);"></canvas>
+
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                <button type="button" class="btn-primary-gold" onclick="shareOrDownloadStoryCanvas()">
+                    📲 Compartir Imagen / Guardar Story
+                </button>
+                <button type="button" class="btn-secondary-wine" onclick="triggerNativeShare()">
+                    📋 Copiar Texto Resumen
+                </button>
+                <button type="button" class="btn-ghost-sm" onclick="closeShareModal()">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "Cepa Espejo Pro — Sommelier & Evento",
+  "short_name": "Cepa Espejo",
+  "description": "App profesional de sommelería y psicología sensorial para descubrir tu cepa argentina ideal más allá del Malbec en 45 segundos.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#11070b",
+  "theme_color": "#16090f",
+  "lang": "es-AR",
+  "categories": ["food", "lifestyle", "education"],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

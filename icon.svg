@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b0918"/>
+      <stop offset="50%" stop-color="#16070f"/>
+      <stop offset="100%" stop-color="#0d0408"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6d38d"/>
+      <stop offset="50%" stop-color="#d4a359"/>
+      <stop offset="100%" stop-color="#9e6d2b"/>
+    </linearGradient>
+    <linearGradient id="wine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b51d4a"/>
+      <stop offset="100%" stop-color="#5c0b24"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="20" y="20" width="472" height="472" rx="96" fill="none" stroke="url(#gold)" stroke-width="4" stroke-opacity="0.35"/>
+  <!-- Wine Bowl -->
+  <path d="M168 108 H344 L330 226 C322 292 256 322 256 322 C256 322 190 292 182 226 Z" fill="none" stroke="url(#gold)" stroke-width="16" stroke-linejoin="round"/>
+  <!-- Wine Liquid Mirror -->
+  <path d="M185 198 Q220 212 256 198 T327 198 L324 224 C317 280 256 308 256 308 C256 308 195 280 188 224 Z" fill="url(#wine)"/>
+  <!-- Stem & Base -->
+  <line x1="256" y1="322" x2="256" y2="412" stroke="url(#gold)" stroke-width="16" stroke-linecap="round"/>
+  <line x1="192" y1="412" x2="320" y2="412" stroke="url(#gold)" stroke-width="16" stroke-linecap="round"/>
+  <!-- Sparkle / Mirror Star -->
+  <path d="M256 130 L263 150 L283 157 L263 164 L256 184 L249 164 L229 157 L249 150 Z" fill="url(#gold)"/>
+</svg>
+
