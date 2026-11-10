@@ -77,23 +77,23 @@
                             <span>Descubrí tu Cepa Espejo</span>
                         </h1>
                         <p class="hero-lead">
-                            <strong>Acá no hace falta saber de vinos ni de palabras difíciles.</strong> Contanos en 4
-                            toques cómo tomás tu café o mate y qué te gusta disfrutar, y descubrí qué vino del evento
-                            refleja tu estilo.
+                            <strong>Un test psicológico y sensorial sin palabras difíciles.</strong> Respondé en 4
+                            toques cómo conectás con los demás, qué energía te mueve y cómo vivís cada momento para
+                            descubrir qué cepa —tinta, blanca, rosada o naranjo— es tu reflejo.
                         </p>
 
                         <div class="hero-steps-strip">
                             <div class="hero-step-chip">
-                                <strong>Cero Jerga</strong>
-                                <span>Sin palabras raras</span>
+                                <strong>Psicológico</strong>
+                                <span>Leemos tu estilo</span>
                             </div>
                             <div class="hero-step-chip">
                                 <strong>35 Segundos</strong>
-                                <span>Solo 4 preguntas</span>
+                                <span>4 dimensiones</span>
                             </div>
                             <div class="hero-step-chip">
-                                <strong>En Barra Hoy</strong>
-                                <span>Vinos reales del evento</span>
+                                <strong>Sin Prejuicios</strong>
+                                <span>Tintos, Blancos, Rosé y +</span>
                             </div>
                         </div>
                     </div>
@@ -197,7 +197,7 @@
                                 <span id="res-grape-emblem" class="grape-emblem-badge" aria-hidden="true"></span>
                                 <h2 id="res-grape-title" class="result-grape-title" style="margin:0;">Pinot Noir</h2>
                             </div>
-                            <p id="res-region-sub" class="result-region-sub">Patagonia & Valle de Uco</p>
+                            <p id="res-region-sub" class="result-region-sub">Tinto Sutil, Sedoso y Elegante</p>
                         </div>
                         <div class="match-badge">
                             <strong id="res-match-pct">94%</strong>
@@ -225,8 +225,8 @@
                     <!-- Pre-loaded Event Bottle Banner -->
                     <div class="bottle-tonight-banner">
                         <div style="flex:1;">
-                            <span class="bottle-tonight-label">🍾 Pedí esta etiqueta hoy en la barra</span>
-                            <div id="res-bottle-tonight" class="bottle-tonight-name">Pinot Noir Patagónico</div>
+                            <span class="bottle-tonight-label">🍾 Tu Cepa / Vino hoy en la barra</span>
+                            <div id="res-bottle-tonight" class="bottle-tonight-name">Pinot Noir</div>
                             <div id="res-bottle-note"
                                 style="font-size:0.75rem;color:var(--gold-bright);margin-top:2px;"></div>
                         </div>
@@ -369,16 +369,12 @@
 
                     <!-- Quick Event Presets -->
                     <div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:2px;">
-                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('all6')">Activar 6
-                            Clásicas</button>
-                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('all8')">Activar
-                            Todas</button>
-                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('tintos')">Solo
-                            Tintos</button>
-                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('custom_only')">✨ Solo Mis
-                            Vinos / Blends</button>
-                        <button type="button" class="btn-ghost-sm" onclick="resetEventStats()">Reiniciar Conteo
-                            (0)</button>
+                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('all6')">Selección Equilibrada (8)</button>
+                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('all8')">Activar Todas (12)</button>
+                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('blancos_rosados')">Blancos, Rosados y Naranjos</button>
+                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('tintos')">Solo Tintos</button>
+                        <button type="button" class="btn-ghost-sm" onclick="applyCavaPreset('custom_only')">✨ Solo Mis Vinos / Blends</button>
+                        <button type="button" class="btn-ghost-sm" onclick="resetEventStats()">Reiniciar Conteo (0)</button>
                     </div>
 
                     <!-- Live Stand Metrics + B2B Export -->
@@ -436,16 +432,16 @@
                                     onclick="fillCustomTemplate('blend_tintas')">🍷 Blend de Tintas</button>
                                 <button type="button" class="btn-ghost-sm"
                                     onclick="fillCustomTemplate('blend_blancas')">🥂 Blend de Blancas</button>
+                                <button type="button" class="btn-ghost-sm" onclick="fillCustomTemplate('rosado')">🌸
+                                    Rosado</button>
                                 <button type="button" class="btn-ghost-sm" onclick="fillCustomTemplate('naranjo')">🍊
                                     Vino Naranjo</button>
                                 <button type="button" class="btn-ghost-sm" onclick="fillCustomTemplate('espumante')">🍾
                                     Espumante / Pet-Nat</button>
                                 <button type="button" class="btn-ghost-sm" onclick="fillCustomTemplate('tannat')">🍇
                                     Tannat / Petit Verdot</button>
-                                <button type="button" class="btn-ghost-sm" onclick="fillCustomTemplate('chardonnay')">🍐
-                                    Chardonnay / Viognier</button>
                                 <button type="button" class="btn-ghost-sm"
-                                    onclick="fillCustomTemplate('malbec_autor')">🍇 Malbec de Autor</button>
+                                    onclick="fillCustomTemplate('malbec_autor')">🍇 Malbec</button>
                             </div>
                         </div>
 
@@ -456,16 +452,16 @@
                                     Nombre de la Cepa, Corte o Estilo:
                                 </label>
                                 <input id="cg-name" type="text" class="input-luxury"
-                                    placeholder="Ej: Blend de Tintas (Malbec • Cab Franc • Syrah)" />
+                                    placeholder="Ej: Blend de Tintas / Rosado / Viognier" />
                             </div>
 
                             <div>
                                 <label
                                     style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
-                                    Etiqueta / Bodega que vas a servir hoy:
+                                    Etiqueta a mostrar hoy (o dejalo igual al nombre de la cepa):
                                 </label>
                                 <input id="cg-bottle" type="text" class="input-luxury"
-                                    placeholder="Ej: Clos de los Siete / Bressia Conjuro" />
+                                    placeholder="Ej: Blend de Tintas (o el nombre de la bodega)" />
                             </div>
 
                             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
@@ -476,17 +472,18 @@
                                     </label>
                                     <select id="cg-category" class="input-luxury">
                                         <option value="intenso">Tinto con Carácter / Blend Tinto</option>
-                                        <option value="sutil">Tinto Sutil / Rosado / Jugoso</option>
-                                        <option value="blanco">Blanco / Blend Blanco / Naranjo / Espumante</option>
+                                        <option value="sutil">Tinto Sutil / Ligero</option>
+                                        <option value="blanco">Blanco / Blend Blanco / Espumante</option>
+                                        <option value="rosado_naranjo">Rosado / Vino Naranjo</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label
                                         style="font-size:0.68rem;color:var(--gold-main);font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px;">
-                                        Región / Origen:
+                                        Descriptor de Estilo (Sin lugar fijo):
                                     </label>
                                     <input id="cg-region" type="text" class="input-luxury"
-                                        placeholder="Ej: Valle de Uco, Mendoza" />
+                                        placeholder="Ej: Corte Tinto Armónico y Envolvente" />
                                 </div>
                             </div>
 
@@ -601,13 +598,15 @@
                     <div style="display:flex;flex-wrap:wrap;gap:6px;">
                         <button type="button" id="cat-filter-all" class="btn-ghost-sm"
                             style="background:var(--gold-main);color:#1a080f;" onclick="setCatalogFilter('all')">Todas
-                            (8)</button>
+                            (12)</button>
                         <button type="button" id="cat-filter-sutil" class="btn-ghost-sm"
-                            onclick="setCatalogFilter('sutil')">Tintas Sutiles y Sedosas</button>
+                            onclick="setCatalogFilter('sutil')">Tintas Sutiles</button>
                         <button type="button" id="cat-filter-intenso" class="btn-ghost-sm"
                             onclick="setCatalogFilter('intenso')">Tintas con Carácter</button>
                         <button type="button" id="cat-filter-blanco" class="btn-ghost-sm"
-                            onclick="setCatalogFilter('blanco')">Blancas Gastronómicas</button>
+                            onclick="setCatalogFilter('blanco')">Blancos</button>
+                        <button type="button" id="cat-filter-rosado_naranjo" class="btn-ghost-sm"
+                            onclick="setCatalogFilter('rosado_naranjo')">Rosados y Naranjos</button>
                     </div>
                 </div>
 

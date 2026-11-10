@@ -39,6 +39,14 @@ function getGrapeEmblemSVG(grapeId, size = 22) {
     criolla: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
     // Golden Drop / Chalice for Semillón
     semillon: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
+    // Compass / Breeze Star for Sauvignon Blanc
+    sauvblanc: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
+    // Diamond Gem for Chardonnay
+    chardonnay: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20"/></svg>`,
+    // Lotus / Rose Petal for Rosado
+    rosado: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a4.5 4.5 0 1 1 4.5 4.5M12 5a4.5 4.5 0 1 0-4.5 4.5M12 5v14"/><path d="M7 14c-2.5 0-4.5-2-4.5-4.5S4.5 5 7 5"/><path d="M17 14c2.5 0 4.5-2 4.5-4.5S19.5 5 17 5"/><path d="M8 19h8"/></svg>`,
+    // Amphora / Sun-Moon Eclipse for Vino Naranjo
+    naranjo: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v3l3 4a7 7 0 0 1-4 10l-2 2h-0l-2-2a7 7 0 0 1-4-10l3-4V3z"/><path d="M6 8c-2 0-3 1.5-3 3s1 3 3 3"/><path d="M18 8c2 0 3 1.5 3 3s-1 3-3 3"/></svg>`,
     // Interlocking Rings / Alchemy Star for Custom Blends & Specialties
     custom: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/><path d="M12 3l1.5 3L17 7.5 13.5 9 12 12 10.5 9 7 7.5 10.5 6z"/></svg>`
   };
@@ -52,17 +60,17 @@ const GRAPES = {
     name: "Pinot Noir",
     category: "sutil",
     defaultActive: true,
-    defaultBottle: "Pinot Noir Patagónico (Río Negro / Neuquén)",
+    defaultBottle: "Pinot Noir",
     defaultNote: "Servido apenas fresco para resaltar su textura de seda.",
     auraSymbol: "✨",
     auraCode: "CÓDIGO SEDA • RUBÍ",
     auraGradient: "linear-gradient(135deg, #be123c 0%, #4c0519 100%)",
-    archetype: "El Elegante, Sutil y Detallista",
-    region: "Patagonia (Río Negro / Neuquén) & Gualtallary",
-    signaturePills: ["✨ Textura de Seda", "🍒 Cereza Fresca", "🌊 Súper Fluido"],
-    plainFeel: "Es un tinto súper suave, liviano y acariciador: pasa por la boca como terciopelo, con gusto a cerezas frescas y cero sensación áspera.",
-    mirrorHook: "No necesitás levantar la voz para captar la atención. Buscás textura de seda, capas sutiles y experiencias que seducen con elegancia en vez de fuerza bruta.",
-    malbecBridge: "Te enamora porque combina una suavidad total (sin ninguna aspereza) con aromas delicados de fruta roja fresca, flores secas y una frescura que invita a seguir charlando.",
+    archetype: "El Sensible, Sutil y Detallista",
+    region: "Tinto Sutil, Sedoso y Elegante",
+    signaturePills: ["✨ Textura de Seda", "🍒 Fruta Roja Fina", "🌊 Súper Fluido"],
+    plainFeel: "Es un tinto súper suave, liviano y acariciador: pasa por la boca como terciopelo, con notas a cerezas frescas y cero sensación áspera.",
+    mirrorHook: "Tu psicología valora la sutileza por encima del ruido. Conectás desde la escucha, captás los pequeños detalles que otros pasan por alto y buscás experiencias que seduzcan con elegancia.",
+    malbecBridge: "Refleja tu mundo interior porque combina una suavidad total (sin ninguna aspereza) con capas delicadas de fruta roja, flores secas y una fluidez que invita a la charla íntima.",
     compound: "Ésteres de fruta roja fina, cetonas de frambuesa y notas terciarias de sotobosque.",
     acidez: 86,
     tanino: 32,
@@ -70,7 +78,7 @@ const GRAPES = {
     aroma: 90,
     frescura: 88,
     guarda: 78,
-    food: "Trucha patagónica a la manteca negra, risotto de hongos o pato.",
+    food: "Pesca grillada, risotto de hongos, aves o pastas suaves.",
     cheese: "Queso Brie cremoso, Camembert o Gruyère suave.",
     infusion: "Té en hebras suave o café filtrado floral.",
     service: "14 °C – 15 °C • Copa Borgoña balón • Agua de mineralización muy débil.",
@@ -83,17 +91,17 @@ const GRAPES = {
     name: "Cabernet Franc",
     category: "intenso",
     defaultActive: true,
-    defaultBottle: "Cabernet Franc de Altura (Valle de Uco)",
-    defaultNote: "Expresivo, fresco y con ese toque herbal de montaña único.",
+    defaultBottle: "Cabernet Franc",
+    defaultNote: "Expresivo, fresco y con ese toque herbal único.",
     auraSymbol: "⚡",
     auraCode: "CÓDIGO RAYO • ÁMBAR",
     auraGradient: "linear-gradient(135deg, #d97706 0%, #451a03 100%)",
     archetype: "El Curioso, Magnético y Audaz",
-    region: "Valle de Uco (Paraje Altamira, Gualtallary, Los Chacayes)",
-    signaturePills: ["⚡ Chispa Herbal", "🍷 Buen Cuerpo", "🏔️ Frescura de Altura"],
-    plainFeel: "Tiene un abrazo sabroso y envolvente en la boca, pero con un toque fresco de hierbas de montaña que despierta el paladar y te invita al siguiente sorbo.",
-    mirrorHook: "Tenés criterio propio y un magnetismo que escapa de lo obvio. Disfrutás de las charlas con chispa, los sabores con nervio y los detalles que rompen la monotonía.",
-    malbecBridge: "Equilibra lo mejor de dos mundos: tiene volumen y fruta jugosa en el centro de la boca, pero suma una frescura eléctrica y notas herbales súper gastronómicas.",
+    region: "Tinto Expresivo, Herbal y Vibrante",
+    signaturePills: ["⚡ Chispa Herbal", "🍷 Buen Cuerpo", "🌟 Final Vibrante"],
+    plainFeel: "Tiene un abrazo sabroso y envolvente en la boca, pero con un toque fresco de hierbas que despierta el paladar y te invita al siguiente sorbo.",
+    mirrorHook: "Tenés una mente inquieta, criterio propio y un magnetismo que escapa de lo predecible. Disfrutás de las ideas con chispa, el diseño y los caminos con identidad.",
+    malbecBridge: "Es tu reflejo porque equilibra presencia y agilidad: tiene volumen sabroso en el centro de la boca, pero suma una frescura eléctrica y un carácter audaz.",
     compound: "Metoxipirazinas equilibradas (tomillo, pimiento rojo asado) + grafito mineral.",
     acidez: 76,
     tanino: 72,
@@ -101,9 +109,9 @@ const GRAPES = {
     aroma: 88,
     frescura: 80,
     guarda: 86,
-    food: "Ojo de bife jugoso con chimichurri de hierbas, cordero o vegetales al rescoldo.",
+    food: "Carnes jugosas con chimichurri de hierbas, cordero o vegetales asados.",
     cheese: "Queso de cabra estacionado o Provoleta dorada con orégano.",
-    infusion: "Mate con hierbas serranas o té en hebras de montaña.",
+    infusion: "Mate con hierbas serranas o té en hebras.",
     service: "16 °C • Copa Burdeos • Agua mineral de mineralización media.",
     blindSight: "Capa media a media(+), rubí profundo con destellos violáceos vivos.",
     blindNose: "Frambuesa, casis, mina de lápiz (grafito), pimiento rojo asado y tomillo fresco.",
@@ -111,20 +119,20 @@ const GRAPES = {
   },
   bonarda: {
     id: "bonarda",
-    name: "Bonarda Argentina",
+    name: "Bonarda",
     category: "sutil",
     defaultActive: true,
-    defaultBottle: "Bonarda de Parrales Antiguos (Mendoza)",
+    defaultBottle: "Bonarda",
     defaultNote: "Pura fruta jugosa y amable para disfrutar sin protocolos.",
     auraSymbol: "🍒",
     auraCode: "CÓDIGO FRUTA • CORAL",
     auraGradient: "linear-gradient(135deg, #e11d48 0%, #881337 100%)",
-    archetype: "El Anfitrión Cálido y Descontracturado",
-    region: "Este y Sur de Mendoza & Valles de San Juan",
+    archetype: "El Empático, Cálido y Descontracturado",
+    region: "Tinto Jugoso, Redondo y Amigable",
     signaturePills: ["🍒 Fruta Explosiva", "😊 Cero Aspereza", "🥂 Súper Sociable"],
-    plainFeel: "Es un tinto súper amigable, redondo y jugoso: entra dulce por su fruta fresca (mora y cereza) y no raspa absolutamente nada en la garganta.",
-    mirrorHook: "Hacés sentir cómodos a todos apenas llegás. Auténtico, generoso y sin poses rígidas, valorás las sobremesas largas y el placer directo.",
-    malbecBridge: "Conecta con tu lado cálido y disfrutable: ofrece una entrada golosa de moras y ciruelas frescas con una textura redonda, festiva y muy fácil de beber.",
+    plainFeel: "Es un tinto súper amigable, redondo y jugoso: entra amable por su fruta fresca (mora y cereza) y no raspa absolutamente nada en la garganta.",
+    mirrorHook: "Tu personalidad genera confianza y calidez apenas llegás. Sos genuino, generoso y sin poses rígidas: para vos los mejores momentos son los que se comparten con alegría.",
+    malbecBridge: "Conecta con tu empatía natural: ofrece una entrada frutal de moras y ciruelas frescas con una textura redonda, envolvente y sumamente disfrutable.",
     compound: "Antocianos profundos y ésteres frutales de mora, cereza negra e higo fresco.",
     acidez: 68,
     tanino: 46,
@@ -132,8 +140,8 @@ const GRAPES = {
     aroma: 80,
     frescura: 76,
     guarda: 62,
-    food: "Empanadas cortadas a cuchillo al horno de barro, pastas con estofado o asado.",
-    cheese: "Gouda estacionado, Fontina o Pategrás argentino.",
+    food: "Empanadas cortadas a cuchillo, pastas con estofado o carnes al horno.",
+    cheese: "Gouda estacionado, Fontina o Pategrás.",
     infusion: "Café cremoso con notas a avellana o mate suave en ronda.",
     service: "15 °C – 16 °C (ligeramente fresco) • Copa universal • Agua sin gas liviana.",
     blindSight: "Capa alta con color rojo violáceo vivo y bordes púrpura brillantes.",
@@ -142,20 +150,20 @@ const GRAPES = {
   },
   syrah: {
     id: "syrah",
-    name: "Syrah de Altura",
+    name: "Syrah",
     category: "intenso",
     defaultActive: true,
-    defaultBottle: "Syrah Valle de Pedernal (San Juan)",
+    defaultBottle: "Syrah",
     defaultNote: "Intenso, nocturno y con un toque natural de pimienta negra.",
     auraSymbol: "🔥",
     auraCode: "CÓDIGO FUEGO • PÚRPURA",
     auraGradient: "linear-gradient(135deg, #7e22ce 0%, #2e1065 100%)",
-    archetype: "El Intenso, Apasionado y Nocturno",
-    region: "Valle de Pedernal (San Juan) & Valle de Uco",
+    archetype: "El Apasionado, Magnético y Nocturno",
+    region: "Tinto Intenso, Especiado y Profundo",
     signaturePills: ["🔥 Cuerpo Pleno", "🌶️ Toque Especiado", "🌙 Carácter Nocturno"],
-    plainFeel: "Es un vino que te llena toda la boca con calor y presencia: envolvente, profundo y con un perfumito riquísimo a especias, fuego y pimienta recién molida.",
-    mirrorHook: "Presencia firme, decidida y apasionada. No te gustan las tintas medias: preferís el fuego lento, la noche y las experiencias que dejan huella.",
-    malbecBridge: "Va directo a lo que te gusta sentir: plenitud en boca, textura envolvente y un carácter especiado y apasionado que se luce con comidas al fuego.",
+    plainFeel: "Es un vino que llena toda la boca con calor y presencia: envolvente, profundo y con un perfume riquísimo a especias, fuego y pimienta recién molida.",
+    mirrorHook: "Vivís las emociones a fondo y tenés una presencia magnética. No te gustan las medias tintas: preferís la noche, el fuego lento y los vínculos que dejan huella.",
+    malbecBridge: "Traduce tu intensidad emocional en la copa: plenitud en boca, textura envolvente y un carácter especiado y apasionado imposible de ignorar.",
     compound: "Rotundona (marcador de pimienta negra recién molida), aceituna negra y humo sutil.",
     acidez: 62,
     tanino: 82,
@@ -163,7 +171,7 @@ const GRAPES = {
     aroma: 86,
     frescura: 58,
     guarda: 88,
-    food: "Cordero a la cruz, ciervo ahumado o mollejas doradas al limón.",
+    food: "Cordero a las brasas, carnes ahumadas o risotto especiado.",
     cheese: "Lincoln o Reggianito estacionado con pimienta negra en grano.",
     infusion: "Café espresso corto bien intenso o té negro ahumado.",
     service: "16 °C – 18 °C (oxigenar 15 min) • Copa Syrah/Burdeos • Agua con gas fina.",
@@ -171,61 +179,30 @@ const GRAPES = {
     blindNose: "Pimienta negra recién molida (rotundona), arándano, aceituna negra, panceta y cuero.",
     blindPalate: "Cuerpo pleno y envolvente, tanino firme abundante y largo final especiado."
   },
-  torrontes: {
-    id: "torrontes",
-    name: "Torrontés de Altura",
-    category: "blanco",
-    defaultActive: true,
-    defaultBottle: "Torrontés Cafayate Seco (Salta 1.800m)",
-    defaultNote: "Huele a flores y uva fresca, pero en boca es seco y súper refrescante.",
-    auraSymbol: "☀️",
-    auraCode: "CÓDIGO SOL • ESMERALDA",
-    auraGradient: "linear-gradient(135deg, #059669 0%, #064e3b 100%)",
-    archetype: "El Espíritu Libre, Luminoso y Expresivo",
-    region: "Valles Calchaquíes (Cafayate, Salta — +1.700 msnm)",
-    signaturePills: ["☀️ Perfume Explosivo", "🍋 Seco y Vibrante", "🏔️ 100% Argentino"],
-    plainFeel: "Apenas acercás la nariz explota a flores y pomelo (parece que fuera dulce), pero cuando lo tomás es totalmente seco, fresco y súper aromático.",
-    mirrorHook: "Espontáneo, luminoso y expresivo. Cambiás la energía de cualquier reunión con frescura, originalidad y un encanto que rompe el protocolo.",
-    malbecBridge: "Es nuestra gran cepa nacida en Argentina: sorprende a todos porque combina un perfume inolvidable con una boca súper limpia, seca y eléctrica.",
-    compound: "Terpenos libres (linalol y geraniol): jazmín, rosa, azahar y piel de pomelo.",
-    acidez: 80,
-    tanino: 14,
-    cuerpo: 50,
-    aroma: 98,
-    frescura: 95,
-    guarda: 55,
-    food: "Empanadas salteñas picantes, ceviche, cocina thai o humita.",
-    cheese: "Quesillo norteño, Burrata fresca con cítricos o queso azul suave.",
-    infusion: "Té Blanco con jazmín o mate frío con pomelo y cedrón.",
-    service: "8 °C – 10 °C • Copa de blanco cerrada • Agua fresca sin gas.",
-    blindSight: "Amarillo pálido cristalino con reflejos verdosos y acerados.",
-    blindNose: "Explosión terpénica: uva recién cortada, jazmín, pétalos de rosa y cáscara de pomelo.",
-    blindPalate: "Engaña al cerebro (huele dulce pero entra totalmente seco), acidez vibrante y final cítrico."
-  },
   cabsauv: {
     id: "cabsauv",
     name: "Cabernet Sauvignon",
     category: "intenso",
     defaultActive: true,
-    defaultBottle: "Cabernet Sauvignon Luján de Cuyo / Cafayate",
-    defaultNote: "Elegancia clásica con cuerpo firme, ideal para carnes a las brasas.",
+    defaultBottle: "Cabernet Sauvignon",
+    defaultNote: "Elegancia clásica con cuerpo firme y gran estructura.",
     auraSymbol: "👑",
     auraCode: "CÓDIGO CORONA • CARMESÍ",
     auraGradient: "linear-gradient(135deg, #991b1b 0%, #450a0a 100%)",
-    archetype: "El Líder Clásico, Firme y Estructurado",
-    region: "Luján de Cuyo (Agrelo, Perdriel), Uco & Cafayate",
-    signaturePills: ["👑 Estructura Firme", "🍷 Clásico de Guarda", "🥩 Rey del Asado"],
-    plainFeel: "Es un tinto serio, con peso y agarre firme en la boca: elegante, largo y perfecto para acompañar un gran corte de carne o quesos estacionados.",
-    mirrorHook: "Confiable, estructurado y de visión clara. Valorás los clásicos bien ejecutados, la arquitectura sólida y lo que mejora con el paso del tiempo.",
-    malbecBridge: "Representa la elegancia firme y gastronómica: ofrece estructura lineal, notas nobles de pimienta y cedro, y un final largo e impecable en cenas importantes.",
-    compound: "Cassis (grosella negra), cedro, tabaco rubio y pirazinas nobles de altura.",
+    archetype: "El Líder Clásico, Firme y Determinado",
+    region: "Tinto Estructurado, Firme y de Guarda",
+    signaturePills: ["👑 Estructura Firme", "🍷 Clásico Atemporal", "🥩 Gran Carácter"],
+    plainFeel: "Es un tinto serio, con peso y agarre firme en la boca: elegante, largo y perfecto para acompañar grandes platos o quesos estacionados.",
+    mirrorHook: "Transmitís seguridad, determinación y visión a largo plazo. Valorás la palabra empeñada, la solidez y aquello que demuestra su nobleza con el tiempo.",
+    malbecBridge: "Es el espejo de tu templanza y liderazgo: ofrece estructura firme, notas nobles de pimienta y madera fina, y un final largo e impecable.",
+    compound: "Cassis (grosella negra), cedro, tabaco rubio y pirazinas nobles.",
     acidez: 70,
     tanino: 90,
     cuerpo: 90,
     aroma: 80,
     frescura: 64,
     guarda: 94,
-    food: "Bife de chorizo ancho a las brasas, costillar vacuno o guiso de lentejas.",
+    food: "Bife de chorizo ancho a las brasas, costillar o guisos de cocción lenta.",
     cheese: "Sardo estacionado, Reggianito o Cheddar maduro.",
     infusion: "Café negro bien intenso o mate amargo con cuerpo.",
     service: "17 °C – 18 °C • Copa Burdeos alta • Agua mineral con o sin gas.",
@@ -233,22 +210,177 @@ const GRAPES = {
     blindNose: "Cassis, mora, caja de habanos, cedro, pimienta y toque de pimiento asado.",
     blindPalate: "Ataque firme con taninos altos lineales en encías, acidez media(+) y gran persistencia."
   },
+  torrontes: {
+    id: "torrontes",
+    name: "Torrontés",
+    category: "blanco",
+    defaultActive: true,
+    defaultBottle: "Torrontés",
+    defaultNote: "Huele a flores y fruta fresca, pero en boca es seco y súper refrescante.",
+    auraSymbol: "☀️",
+    auraCode: "CÓDIGO SOL • ESMERALDA",
+    auraGradient: "linear-gradient(135deg, #059669 0%, #064e3b 100%)",
+    archetype: "El Espíritu Libre, Luminoso y Expresivo",
+    region: "Blanco Floral, Seco y Vibrante",
+    signaturePills: ["☀️ Perfume Explosivo", "🍋 Seco y Fresco", "🌸 Súper Expresivo"],
+    plainFeel: "Apenas acercás la nariz explota a flores blancas y cítricos (parece que fuera dulce), pero al tomarlo es totalmente seco, fresco y eléctrico.",
+    mirrorHook: "Tu energía es luminosa, expresiva y contagiosa. Tenés la capacidad de renovar el aire de cualquier lugar con espontaneidad, encanto y frescura.",
+    malbecBridge: "Sorprende igual que tu personalidad: conquista primero con un perfume inolvidable y enseguida revela en boca una frescura limpia, ágil y vibrante.",
+    compound: "Terpenos libres (linalol y geraniol): jazmín, rosa, azahar y piel de pomelo.",
+    acidez: 80,
+    tanino: 14,
+    cuerpo: 50,
+    aroma: 98,
+    frescura: 95,
+    guarda: 55,
+    food: "Empanadas picantes, ceviche, cocina asiática, sushi o picadas frescas.",
+    cheese: "Queso de cabra fresco, Burrata con cítricos o queso azul suave.",
+    infusion: "Té blanco o verde con jazmín, o mate con piel de naranja y cedrón.",
+    service: "8 °C – 10 °C • Copa de blanco cerrada • Agua fresca sin gas.",
+    blindSight: "Amarillo pálido cristalino con reflejos verdosos y acerados.",
+    blindNose: "Explosión terpénica: uva recién cortada, jazmín, pétalos de rosa y cáscara de pomelo.",
+    blindPalate: "Engaña al cerebro (huele dulce pero entra totalmente seco), acidez vibrante y final cítrico."
+  },
+  rosado: {
+    id: "rosado",
+    name: "Rosado",
+    category: "rosado_naranjo",
+    defaultActive: true,
+    defaultBottle: "Rosado",
+    defaultNote: "La frescura de un blanco con el alma frutal y delicada de un tinto.",
+    auraSymbol: "🌸",
+    auraCode: "CÓDIGO ROSÉ • CUARZO",
+    auraGradient: "linear-gradient(135deg, #ec4899 0%, #701a75 100%)",
+    archetype: "El Encantador, Versátil y Luminoso",
+    region: "Rosado Fresco, Delicado y Versátil",
+    signaturePills: ["🌸 Fruta Roja Sutil", "❄️ Súper Refrescante", "✨ Elegancia Ágil"],
+    plainFeel: "Une la frescura helada y liviana de un blanco con las notas delicadas de frutilla, cereza y flores de un tinto suave.",
+    mirrorHook: "Te movés con soltura entre mundos distintos sin atarte a etiquetas rígidas. Combinás sensibilidad estética, frescura social y una alegría elegante.",
+    malbecBridge: "Es el puente perfecto para tu personalidad versátil: acaricia con fruta roja sutil mientras refresca el paladar con una energía limpia y moderna.",
+    compound: "Tioles frutales y ésteres delicados de frutilla blanca, granada, rosa y pomelo rosado.",
+    acidez: 84,
+    tanino: 22,
+    cuerpo: 48,
+    aroma: 90,
+    frescura: 93,
+    guarda: 56,
+    food: "Sushi, bruschettas mediterráneas, ensaladas gourmet, carnes blancas o tapeo.",
+    cheese: "Burrata cremosa, Brie joven o queso de cabra fresco.",
+    infusion: "Infusión fría de frutos rojos e hibisco o té en hebras floral.",
+    service: "8 °C – 10 °C • Copa de blanco / universal • Agua fresca sin gas.",
+    blindSight: "Rosa pálido piel de cebolla a coral brillante, cristalino y luminoso.",
+    blindNose: "Frutilla fresca, frambuesa, pétalos de rosa y toque cítrico de pomelo rosado.",
+    blindPalate: "Entrada ágil y refrescante, acidez viva, textura sedosa y final frutal limpio."
+  },
+  naranjo: {
+    id: "naranjo",
+    name: "Vino Naranjo",
+    category: "rosado_naranjo",
+    defaultActive: true,
+    defaultBottle: "Vino Naranjo",
+    defaultNote: "Blanco fermentado con sus pieles: complejo, ámbar y súper gastronómico.",
+    auraSymbol: "🍊",
+    auraCode: "CÓDIGO ÁMBAR • NARANJO",
+    auraGradient: "linear-gradient(135deg, #ea580c 0%, #5c1d06 100%)",
+    archetype: "El Vanguardista, Creativo y Auténtico",
+    region: "Blanco Macerado con Pieles • Texturado y Curioso",
+    signaturePills: ["🍊 Contacto con Pieles", "🌿 Textura con Agarre", "🎨 Fuera de Serie"],
+    plainFeel: "Es un vino blanco elaborado como un tinto (con la piel de la uva): tiene color ámbar dorado, perfume a cáscara de naranja, damasco y té, y una textura envolvente única.",
+    mirrorHook: "Tenés espíritu de autor y una curiosidad que no se conforma con lo estándar. Buscás historias reales, texturas con carácter y experiencias que despierten conversación.",
+    malbecBridge: "Sorprende a todos porque tiene la frescura aromática de un blanco pero el agarre, la estructura en boca y la complejidad gastronómica de un tinto.",
+    compound: "Fenoles de piel de uva blanca, terpenos de piel de naranja confitada, damasco seco y té negro.",
+    acidez: 80,
+    tanino: 46,
+    cuerpo: 64,
+    aroma: 92,
+    frescura: 82,
+    guarda: 76,
+    food: "Cocina especiada, platos orientales, carnes blancas grilladas o picada de autor.",
+    cheese: "Quesos semiduros de cabra, Morbier, Fontina o Pategrás estacionado.",
+    infusion: "Té negro en hebras con piel de naranja o mate con hierbas y carácter.",
+    service: "11 °C – 13 °C (no servir demasiado frío) • Copa universal / Burdeos.",
+    blindSight: "Color ámbar profundo a cobrizo dorado con reflejos naranjas brillantes.",
+    blindNose: "Cáscara de naranja confitada, quinoto, damasco seco, miel seca, hierbas y té en hebras.",
+    blindPalate: "Seco, con agarre tánico fino proveniente de las pieles, acidez jugosa y final largo."
+  },
+  sauvblanc: {
+    id: "sauvblanc",
+    name: "Sauvignon Blanc",
+    category: "blanco",
+    defaultActive: false,
+    defaultBottle: "Sauvignon Blanc",
+    defaultNote: "Pura frescura cítrica y herbal que despierta el paladar al instante.",
+    auraSymbol: "🍋",
+    auraCode: "CÓDIGO BRISA • CÍTRICO",
+    auraGradient: "linear-gradient(135deg, #10b981 0%, #065f46 100%)",
+    archetype: "El Ágil, Directo y Chispeante",
+    region: "Blanco Cítrico, Eléctrico y Refrescante",
+    signaturePills: ["🍋 Cítrico Eléctrico", "🌿 Toque Herbal", "⚡ Pura Frescura"],
+    plainFeel: "Es un blanco súper fresco, directo y vibrante: sabe a lima, pomelo rosado y maracuyá con una chispa que limpia y despierta toda la boca.",
+    mirrorHook: "Tu mente es rápida, clara y resolutiva. Te gusta la gente honesta y sin vueltas, el movimiento constante y la energía limpia que va directo al punto.",
+    malbecBridge: "Va con tu ritmo dinámico y vital: ofrece una entrada eléctrica, crujiente y súper refrescante que enciende los sentidos en el acto.",
+    compound: "Tioles volátiles (pomelo rosado, maracuyá, lima) y pirazinas frescas.",
+    acidez: 92,
+    tanino: 12,
+    cuerpo: 42,
+    aroma: 94,
+    frescura: 96,
+    guarda: 50,
+    food: "Ceviche, mariscos, sushi, ensaladas cítricas o pescados blancos.",
+    cheese: "Queso de cabra fresco, Burrata o Mozzarella.",
+    infusion: "Limonada con menta y jengibre o té verde frío.",
+    service: "7 °C – 9 °C • Copa de blanco • Agua bien fresca.",
+    blindSight: "Amarillo pálido casi transparente con destellos verde lima.",
+    blindNose: "Pomelo rosado, lima recién exprimida, maracuyá y ruda/hierba fresca.",
+    blindPalate: "Acidez alta punzante y jugosa, cuerpo ligero y final cítrico persistente."
+  },
+  chardonnay: {
+    id: "chardonnay",
+    name: "Chardonnay",
+    category: "blanco",
+    defaultActive: false,
+    defaultBottle: "Chardonnay",
+    defaultNote: "Blanco elegante que une frescura vibrante con textura cremosa.",
+    auraSymbol: "💎",
+    auraCode: "CÓDIGO DIAMANTE • MARFIL",
+    auraGradient: "linear-gradient(135deg, #eab308 0%, #713f12 100%)",
+    archetype: "El Armónico, Refinado y Equilibrado",
+    region: "Blanco Elegante, Envolvente y Armónico",
+    signaturePills: ["💎 Equilibrio Perfecto", "🍏 Fruta Blanca Fina", "🥂 Cremoso y Fresco"],
+    plainFeel: "Es un blanco que llena la boca con suavidad y elegancia: combina la frescura de la manzana verde y el durazno blanco con una textura redonda y cremosa.",
+    mirrorHook: "Buscás el equilibrio justo entre razón y sensibilidad. Apreciás las cosas bien hechas, la armonía estética y los ambientes donde todo fluye con distinción.",
+    malbecBridge: "Representa tu búsqueda de armonía: no es un blanco liviano que pasa rápido, sino un vino envolvente, sedoso y lleno de matices.",
+    compound: "Ésteres de fruta de carozo y pepita, mineralidad calcárea y notas de crianza fina.",
+    acidez: 82,
+    tanino: 20,
+    cuerpo: 72,
+    aroma: 85,
+    frescura: 84,
+    guarda: 84,
+    food: "Salmón grillado, pastas rellenas con manteca y salvia, o aves al horno.",
+    cheese: "Gruyère, Comté, Brie cremoso o Fontina.",
+    infusion: "Flat White cremoso o té Oolong suave.",
+    service: "10 °C – 12 °C • Copa Chardonnay ancha • Agua sin gas.",
+    blindSight: "Amarillo dorado brillante con lágrimas densas.",
+    blindNose: "Manzana verde, pera madura, durazno blanco, avellana tostada y manteca sutil.",
+    blindPalate: "Entrada amplia y cremosa sostenida por una acidez tensa y final largo."
+  },
   criolla: {
     id: "criolla",
-    name: "Criolla Chica (Listán Prieto)",
+    name: "Criolla Chica",
     category: "sutil",
     defaultActive: false,
-    defaultBottle: "Criolla Chica de Parrales Históricos",
-    defaultNote: "Tinto liviano y súper fresco, se sirve apenas frío.",
+    defaultBottle: "Criolla Chica",
+    defaultNote: "Tinto liviano y súper fresco, ideal para servir apenas frío.",
     auraSymbol: "🌿",
     auraCode: "CÓDIGO PARRAL • TURQUESA",
     auraGradient: "linear-gradient(135deg, #0891b2 0%, #164e63 100%)",
-    archetype: "El Descomplicado, Fresco y Auténtico",
-    region: "Valles Calchaquíes, Mendoza Este & Valle de Uco",
+    archetype: "El Auténtico, Libre y Descomplicado",
+    region: "Tinto Ligero, Fresco y Descontracturado",
     signaturePills: ["🌿 Tinto de Sed", "🍓 Frutilla Fresca", "❄️ Se Toma Fresco"],
     plainFeel: "Es un tinto clarito, súper liviano y refrescante como morder una frutilla o granada recién cortada: te podés tomar dos copas charlando sin que te pese nunca.",
-    mirrorHook: "Cero solemnidad y 100% disfrute real. Conectás con la historia viva, los sabores honestos y los vinos que se beben con sed y alegría.",
-    malbecBridge: "Rescata los parrales históricos de nuestra tierra en una versión moderna: pura fruta roja crujiente, liviandad total y frescura jugosa.",
+    mirrorHook: "Cero solemnidad y 100% autenticidad. Conectás con lo simple, lo honesto y los momentos donde nadie actúa para impresionar a los demás.",
+    malbecBridge: "Conecta con tu frescura y naturalidad: pura fruta roja crujiente, liviandad total y una alegría descomplicada en cada sorbo.",
     compound: "Ésteres de frutilla silvestre, granada, cereza ácida y hierbas secas.",
     acidez: 82,
     tanino: 28,
@@ -266,20 +398,20 @@ const GRAPES = {
   },
   semillon: {
     id: "semillon",
-    name: "Semillón Patrimonial",
+    name: "Semillón",
     category: "blanco",
     defaultActive: false,
-    defaultBottle: "Semillón de Viñas Viejas (Uco / Río Negro)",
+    defaultBottle: "Semillón",
     defaultNote: "El blanco con cuerpo y cremosidad para amantes del tinto.",
     auraSymbol: "🍯",
     auraCode: "CÓDIGO ÁNFORA • ORO",
     auraGradient: "linear-gradient(135deg, #ca8a04 0%, #713f12 100%)",
-    archetype: "El Intelectual Sereno y Gastronómico",
-    region: "Valle de Uco (Tupungato) & Alto Valle de Río Negro",
+    archetype: "El Reflexivo, Sereno y Profundo",
+    region: "Blanco Cremoso, Sereno y Gastronómico",
     signaturePills: ["🍯 Textura Cremosa", "🍐 Pera y Miel Seca", "🍽️ Blanco con Cuerpo"],
-    plainFeel: "Es un blanco diferente a todos: no es aguado ni ácido, sino cremoso y envolvente en la boca, con notas suaves a pera, miel seca y almendras.",
-    mirrorHook: "Apreciás la profundidad silenciosa y las texturas envolventes. No buscás el grito aromático sino la armonía cremosa en la mesa.",
-    malbecBridge: "Conocido como el 'blanco con alma de tinto': tiene un volumen untuoso y acariciador en el centro de boca que conquista incluso a quienes solo toman tintos.",
+    plainFeel: "Es un blanco diferente a todos: no es aguado ni punzante, sino cremoso y envolvente en la boca, con notas suaves a pera, miel seca y almendras.",
+    mirrorHook: "Tenés una calma reflexiva que transmite paz. No buscás el impacto ruidoso sino la profundidad silenciosa, las charlas con sentido y las texturas que abrazan.",
+    malbecBridge: "Es el famoso 'blanco con alma de tinto': tiene un volumen untuoso y acariciador en el centro de boca que enamora por su serenidad y nobleza.",
     compound: "Lactonas sutiles, cera de abejas, flores de tilo, pera blanca y cáscara de limón.",
     acidez: 74,
     tanino: 18,
@@ -287,7 +419,7 @@ const GRAPES = {
     aroma: 78,
     frescura: 82,
     guarda: 86,
-    food: "Pesca blanca a la parrilla, mollejas al verdeo, aves con crema de hongos.",
+    food: "Pesca blanca a la parrilla, mollejas al verdeo o aves con crema de hongos.",
     cheese: "Comté, Gruyère estacionado o Brie tibio con frutos secos.",
     infusion: "Té de manzanilla y miel en hebras o Flat White cremoso.",
     service: "10 °C – 12 °C (no helar en exceso) • Copa Chardonnay/Burdeos.",
@@ -297,133 +429,133 @@ const GRAPES = {
   }
 };
 
-// 4 Micro-Dilemas Cotidianos (100% positivos, sin atacar a ninguna cepa)
+// 4 Dimensiones Psicológicas y de Personalidad (Sin tecnicismos, explora tintos, blancos, rosados y naranjos)
 const QUESTIONS = [
   {
     step: 1,
-    category: "1 de 4 • Tu pausa de todos los días",
-    title: "Cuando te hacés un ratito para vos a la tarde, ¿qué elegís tomar?",
-    auraLabel: "Sin palabras difíciles",
+    category: "1 de 4 • Tu Energía Social",
+    title: "Cuando llegás a un encuentro o evento, ¿desde qué lugar conectás mejor con los demás?",
+    auraLabel: "Leemos tu forma de vincular",
     options: [
       {
-        emoji: "🌸",
-        headline: "Té en hebras o café suave filtrado",
-        subline: "Me gustan los aromas delicados, livianos y sin amargor fuerte.",
-        axes: { acidez: 86, tanino: 28, cuerpo: 42, aroma: 90, frescura: 90, guarda: 72 }
-      },
-      {
-        emoji: "🌿",
-        headline: "Mate amargo con carácter o hierbas",
-        subline: "Disfruto ese gustito herbal bien fresco y con personalidad.",
-        axes: { acidez: 76, tanino: 72, cuerpo: 74, aroma: 86, frescura: 82, guarda: 84 }
-      },
-      {
-        emoji: "☕",
-        headline: "Café con leche cremoso o mate suave",
-        subline: "Prefiero lo redondo, amable y rico para compartir en ronda.",
-        axes: { acidez: 66, tanino: 44, cuerpo: 64, aroma: 80, frescura: 76, guarda: 62 }
+        emoji: "🔍",
+        headline: "Desde la escucha sutil y la charla íntima",
+        subline: "Prefiero las conversaciones profundas uno a uno, donde importan los matices.",
+        axes: { acidez: 85, tanino: 28, cuerpo: 46, aroma: 88, frescura: 88, guarda: 78 }
       },
       {
         emoji: "⚡",
-        headline: "Espresso corto, bien negro e intenso",
-        subline: "Busco cuerpo firme, tostado profundo y mucha presencia.",
-        axes: { acidez: 64, tanino: 88, cuerpo: 90, aroma: 82, frescura: 60, guarda: 90 }
+        headline: "Desde la curiosidad, el ingenio y las ideas nuevas",
+        subline: "Me divierte romper el molde, descubrir lo distinto y encender charlas con chispa.",
+        axes: { acidez: 78, tanino: 62, cuerpo: 70, aroma: 90, frescura: 82, guarda: 82 }
+      },
+      {
+        emoji: "☀️",
+        headline: "Desde la espontaneidad, la risa y la frescura",
+        subline: "Llego para distender el ambiente: valoro la naturalidad y disfrutar sin poses.",
+        axes: { acidez: 80, tanino: 26, cuerpo: 52, aroma: 92, frescura: 90, guarda: 58 }
+      },
+      {
+        emoji: "🔥",
+        headline: "Desde la presencia firme, el magnetismo y la intensidad",
+        subline: "Me gusta liderar el momento, ir a fondo en lo que siento y dejar huella.",
+        axes: { acidez: 66, tanino: 86, cuerpo: 90, aroma: 84, frescura: 60, guarda: 90 }
       }
     ]
   },
   {
     step: 2,
-    category: "2 de 4 • En una picada o postre",
-    title: "Si abrimos una picada o algo rico a la noche, ¿a qué vas primero?",
-    auraLabel: "Descubriendo tu textura ideal",
+    category: "2 de 4 • Tu Brújula Interior",
+    title: "A la hora de elegir un plan, un viaje o un proyecto, ¿qué te mueve por dentro?",
+    auraLabel: "Tu motor emocional",
     options: [
       {
-        emoji: "🍓",
-        headline: "Queso Brie cremoso o chocolate con frutos rojos",
-        subline: "Sabores suaves que se deshacen en la boca como seda.",
-        axes: { acidez: 84, tanino: 34, cuerpo: 46, aroma: 88, frescura: 86, guarda: 76 }
+        emoji: "🕊️",
+        headline: "La armonía estética, la calma y el cuidado del detalle",
+        subline: "Elijo lo que tiene elegancia silenciosa, suavidad y equilibrio.",
+        axes: { acidez: 82, tanino: 26, cuerpo: 54, aroma: 86, frescura: 86, guarda: 80 }
       },
       {
-        emoji: "🌿",
-        headline: "Provoleta dorada con orégano o queso de cabra",
-        subline: "Ese toque sabroso de hierbas, brasas y chispa.",
-        axes: { acidez: 76, tanino: 72, cuerpo: 76, aroma: 88, frescura: 80, guarda: 84 }
+        emoji: "🧭",
+        headline: "La exploración de lo auténtico y fuera de serie",
+        subline: "Me atrae lo artesanal, lo creativo y los caminos con personalidad propia.",
+        axes: { acidez: 78, tanino: 58, cuerpo: 68, aroma: 90, frescura: 82, guarda: 80 }
       },
       {
-        emoji: "🍋",
-        headline: "Burrata fresca, frutas o algo bien cítrico",
-        subline: "Algo liviano, perfumado y súper refrescante.",
-        axes: { acidez: 80, tanino: 18, cuerpo: 50, aroma: 96, frescura: 95, guarda: 58 }
+        emoji: "🌊",
+        headline: "La libertad, el movimiento y la energía luminosa",
+        subline: "Busco experiencias vivas, ágiles y refrescantes que se sientan en el acto.",
+        axes: { acidez: 86, tanino: 20, cuerpo: 48, aroma: 94, frescura: 94, guarda: 54 }
       },
       {
-        emoji: "🔥",
-        headline: "Queso duro picante, salame o chocolate 85%",
-        subline: "Sabores intensos y largos que piden un vino con fuerza.",
-        axes: { acidez: 66, tanino: 88, cuerpo: 90, aroma: 84, frescura: 60, guarda: 92 }
+        emoji: "👑",
+        headline: "La solidez, la convicción y lo que trasciende",
+        subline: "Apuesto por lo que tiene raíces firmes, profundidad y estructura duradera.",
+        axes: { acidez: 68, tanino: 88, cuerpo: 90, aroma: 82, frescura: 62, guarda: 92 }
       }
     ]
   },
   {
     step: 3,
-    category: "3 de 4 • Tu clima y energía",
-    title: "Si tuvieras que elegir un plan perfecto para desconectar, ¿cuál sería?",
-    auraLabel: "Conectando con tu clima y paisaje ideal",
+    category: "3 de 4 • Tu Escenario Emocional",
+    title: "Si tu personalidad fuera una atmósfera o un momento del día, ¿cuál elegirías habitar?",
+    auraLabel: "Tu clima interior",
     options: [
       {
         emoji: "🍂",
-        headline: "Cabaña frente a un lago en el sur",
-        subline: "Tranquilidad, madera, música suave y charla íntima.",
-        axes: { acidez: 86, tanino: 32, cuerpo: 45, aroma: 90, frescura: 88, guarda: 80 }
+        headline: "Atardecer sereno, música acústica suave y luz cálida",
+        subline: "Un refugio íntimo y pausado donde cada sensación se disfruta en calma.",
+        axes: { acidez: 82, tanino: 30, cuerpo: 52, aroma: 86, frescura: 86, guarda: 82 }
       },
       {
-        emoji: "🏛️",
-        headline: "Bar oculto de diseño o cena gourmet",
-        subline: "Originalidad, conversación con chispa y descubrir cosas nuevas.",
-        axes: { acidez: 76, tanino: 70, cuerpo: 76, aroma: 88, frescura: 80, guarda: 86 }
+        emoji: "🎨",
+        headline: "Un estudio creativo, vinilos o un bar oculto de autor",
+        subline: "Un ambiente ecléctico, estimulante y lleno de texturas por descubrir.",
+        axes: { acidez: 78, tanino: 60, cuerpo: 70, aroma: 90, frescura: 80, guarda: 84 }
       },
       {
-        emoji: "☀️",
-        headline: "Terraza al sol o asado largo con amigos",
-        subline: "Aire libre, risas, frescura y cero protocolo.",
-        axes: { acidez: 74, tanino: 32, cuerpo: 58, aroma: 90, frescura: 86, guarda: 60 }
+        emoji: "🌅",
+        headline: "Mediodía radiante al aire libre, brisa fresca y amigos",
+        subline: "Sol, vitalidad, mesa compartida y la alegría simple del presente.",
+        axes: { acidez: 80, tanino: 28, cuerpo: 52, aroma: 90, frescura: 90, guarda: 58 }
       },
       {
         emoji: "🌙",
-        headline: "Fogón a medianoche bajo las estrellas",
-        subline: "Fuego lento, noche larga e intensidad.",
-        axes: { acidez: 64, tanino: 86, cuerpo: 90, aroma: 85, frescura: 60, guarda: 90 }
+        headline: "Noche cerrada junto al fuego bajo las estrellas",
+        subline: "Misterio, magnetismo nocturno, calor profundo y emociones intensas.",
+        axes: { acidez: 64, tanino: 86, cuerpo: 90, aroma: 86, frescura: 58, guarda: 90 }
       }
     ]
   },
   {
     step: 4,
-    category: "4 de 4 • El sello de tu copa",
-    title: "Cuando das el primer sorbo de un vino, ¿qué sensación te conquista más?",
-    auraLabel: "Último toque",
+    category: "4 de 4 • Tu Reflejo en la Copa",
+    title: "Si tradujéramos tu forma de ser al paladar, ¿qué sensación te representa mejor?",
+    auraLabel: "El toque final",
     options: [
       {
         emoji: "✨",
-        headline: "Que sea suave, liviano y sedoso",
-        subline: "Que pase acariciando la garganta sin ser nunca pesado.",
-        axes: { acidez: 86, tanino: 30, cuerpo: 42, aroma: 90, frescura: 90, guarda: 74 }
+        headline: "Sutil, sedosa o envolvente como una caricia",
+        subline: "Delicada, cremosa o de paso aterciopelado, sin raspar jamás.",
+        axes: { acidez: 82, tanino: 26, cuerpo: 50, aroma: 88, frescura: 88, guarda: 80 }
       },
       {
-        emoji: "⚡",
-        headline: "Que tenga buen cuerpo pero un final fresco",
-        subline: "Sabroso en el centro de la boca pero con una chispa vibrante.",
-        axes: { acidez: 76, tanino: 72, cuerpo: 76, aroma: 88, frescura: 82, guarda: 86 }
+        emoji: "🍋",
+        headline: "Vibrante, fresca y con una chispa que despierta",
+        subline: "Luminosa, cítrica o delicadamente frutal (como un gran blanco o rosado).",
+        axes: { acidez: 88, tanino: 18, cuerpo: 46, aroma: 94, frescura: 95, guarda: 56 }
       },
       {
-        emoji: "🍒",
-        headline: "Que sea bien frutal, jugoso o muy perfumado",
-        subline: "Fácil de tomar, expresivo y que enamore desde el aroma.",
-        axes: { acidez: 72, tanino: 42, cuerpo: 62, aroma: 84, frescura: 80, guarda: 60 }
+        emoji: "🍊",
+        headline: "Jugosa, expresiva o con una textura diferente",
+        subline: "Descontracturada y sorprendente: desde fruta jugosa hasta un naranjo o corte de autor.",
+        axes: { acidez: 76, tanino: 52, cuerpo: 66, aroma: 90, frescura: 80, guarda: 74 }
       },
       {
-        emoji: "🔥",
-        headline: "Que sea intenso, especiado y con carácter",
-        subline: "Un vino potente y envolvente que deje huella en boca.",
-        axes: { acidez: 68, tanino: 88, cuerpo: 90, aroma: 84, frescura: 62, guarda: 92 }
+        emoji: "🌶️",
+        headline: "Profunda, especiada y con carácter firme",
+        subline: "Con volumen, presencia en boca y una huella larga e inolvidable.",
+        axes: { acidez: 66, tanino: 88, cuerpo: 90, aroma: 84, frescura: 60, guarda: 92 }
       }
     ]
   }
@@ -435,19 +567,19 @@ const ORACLE_QUESTIONS = [
     id: "mouth",
     prompt: "1. Tomá un sorbito: ¿cómo lo sentiste apenas entró a tu boca?",
     options: [
-      { label: "💧 Súper fresco, liviano y me hizo salivar rico", weights: { pinot: 3, torrontes: 3, criolla: 3, semillon: 2 } },
-      { label: "🍒 Redondo, jugoso y suavecito como fruta fresca", weights: { bonarda: 4, pinot: 2, criolla: 2, semillon: 2 } },
-      { label: "⚡ Con cuerpo pero eléctrico y vibrante en la lengua", weights: { cabfranc: 4, semillon: 2, cabsauv: 1 } },
-      { label: "🔥 Intenso, envolvente y con agarre firme en las encías", weights: { syrah: 4, cabsauv: 4, cabfranc: 1 } }
+      { label: "💧 Súper fresco, liviano y me hizo salivar rico", weights: { pinot: 3, torrontes: 4, sauvblanc: 4, rosado: 4, criolla: 3 } },
+      { label: "🍒 Redondo, jugoso o cremoso y suavecito", weights: { bonarda: 4, chardonnay: 4, semillon: 4, rosado: 2, pinot: 2 } },
+      { label: "⚡ Con textura y agarre pero súper vibrante en la lengua", weights: { cabfranc: 4, naranjo: 4, semillon: 2 } },
+      { label: "🔥 Intenso, envolvente y con peso firme en la boca", weights: { syrah: 4, cabsauv: 4, cabfranc: 2 } }
     ]
   },
   {
     id: "music",
     prompt: "2. Si ese sorbo fuera música sonando ahora mismo, ¿qué sería?",
     options: [
-      { label: "🎷 Jazz suave e íntimo o guitarra acústica", weights: { pinot: 4, semillon: 3 } },
-      { label: "🎸 Rock con chispa, moderno y magnético", weights: { cabfranc: 4, syrah: 2 } },
-      { label: "☀️ Música alegre al aire libre para brindar con amigos", weights: { bonarda: 3, torrontes: 4, criolla: 4 } },
+      { label: "🎷 Jazz suave e íntimo o guitarra acústica", weights: { pinot: 4, semillon: 4, chardonnay: 3 } },
+      { label: "🎸 Indie / Rock con chispa, moderno y magnético", weights: { cabfranc: 4, naranjo: 4, syrah: 2 } },
+      { label: "☀️ Pop / Bossa alegre al aire libre para brindar", weights: { bonarda: 3, torrontes: 4, rosado: 4, sauvblanc: 4, criolla: 4 } },
       { label: "🥁 Tambores nocturnos o una sinfonía clásica potente", weights: { syrah: 4, cabsauv: 4 } }
     ]
   },
@@ -455,25 +587,25 @@ const ORACLE_QUESTIONS = [
     id: "memory",
     prompt: "3. ¿Qué recuerdo o perfume te vino primero a la cabeza?",
     options: [
-      { label: "🍓 Frutillas, cerezas frescas o rosas", weights: { pinot: 4, criolla: 4, bonarda: 2 } },
-      { label: "🌿 Hierbas del campo, lluvia o morrón asado a las brasas", weights: { cabfranc: 4, cabsauv: 2 } },
-      { label: "🌼 Jazmín, cáscara de pomelo, pera o miel", weights: { torrontes: 5, semillon: 4 } },
-      { label: "🌶️ Pimienta recién molida, ciruela madura o humo", weights: { syrah: 4, cabsauv: 3, bonarda: 2 } }
+      { label: "🍓 Frutillas frescas, cerezas o pétalos de rosa", weights: { pinot: 4, rosado: 4, criolla: 4, bonarda: 2 } },
+      { label: "🌿 Hierbas, cáscara de naranja, té en hebras o especias", weights: { cabfranc: 4, naranjo: 4, sauvblanc: 2 } },
+      { label: "🌼 Jazmín, pomelo, manzana verde, pera o miel", weights: { torrontes: 5, sauvblanc: 4, chardonnay: 4, semillon: 4 } },
+      { label: "🌶️ Pimienta recién molida, mora madura o fuego", weights: { syrah: 4, cabsauv: 4, bonarda: 2 } }
     ]
   }
 ];
 
-const STORAGE_KEY_STATE = "cepa_espejo_pro_state_v5";
+const STORAGE_KEY_STATE = "cepa_espejo_pro_state_v6";
 
-// Quick Templates for Sommelier Custom Grapes / Blends
+// Quick Templates for Sommelier Custom Grapes / Blends (Sin lugares geográficos fijos)
 const CUSTOM_TEMPLATES = {
   blend_tintas: {
-    name: "Blend de Tintas de Altura",
-    bottle: "Corte Tinto de Autor (Valle de Uco)",
+    name: "Blend de Tintas",
+    bottle: "Blend de Tintas",
     category: "intenso",
-    region: "Mendoza (Valle de Uco / Luján de Cuyo)",
+    region: "Corte Tinto Equilibrado y Envolvente",
     archetype: "El Sofisticado, Armónico y Multidimensional",
-    plain: "Combina lo mejor de varias uvas tintas: entrada jugosa de fruta, centro de boca envolvente y un final largo y elegante.",
+    plain: "Combina lo mejor de distintas uvas tintas: entrada jugosa de fruta, centro de boca envolvente y un final largo y elegante.",
     food: "Ojo de bife madurado, cordero braseado o pastas rellenas.",
     cheese: "Provoleta dorada, Fontina o quesos de mediana guarda.",
     acidez: 76,
@@ -482,10 +614,10 @@ const CUSTOM_TEMPLATES = {
     aroma: 88
   },
   blend_blancas: {
-    name: "Blend de Blancas Gastronómico",
-    bottle: "Corte Blanco (Semillón • Sauvignon • Chardonnay)",
+    name: "Blend de Blancas",
+    bottle: "Blend de Blancas",
     category: "blanco",
-    region: "Valle de Uco, Mendoza",
+    region: "Corte Blanco Aromático y Gastronómico",
     archetype: "El Curioso Elegante y Luminoso",
     plain: "Un blanco complejo que une frescura cítrica y flores blancas con una textura cremosa y envolvente en el paladar.",
     food: "Pesca blanca grillada, risotto cítrico o aves al horno.",
@@ -495,13 +627,27 @@ const CUSTOM_TEMPLATES = {
     cuerpo: 66,
     aroma: 90
   },
+  rosado: {
+    name: "Rosado",
+    bottle: "Rosado",
+    category: "rosado_naranjo",
+    region: "Rosado Fresco, Delicado y Expresivo",
+    archetype: "El Encantador, Versátil y Luminoso",
+    plain: "Une la frescura vibrante de un blanco con la fruta roja sutil y sedosa de un tinto.",
+    food: "Sushi, tapeo mediterráneo, ensaladas gourmet o carnes blancas.",
+    cheese: "Burrata fresca, Brie joven o queso de cabra.",
+    acidez: 84,
+    tanino: 22,
+    cuerpo: 48,
+    aroma: 90
+  },
   naranjo: {
-    name: "Vino Naranjo (Contacto con Pieles)",
-    bottle: "Naranjo de Partida Limitada",
-    category: "blanco",
-    region: "Mendoza / Valles Calchaquíes",
+    name: "Vino Naranjo",
+    bottle: "Vino Naranjo",
+    category: "rosado_naranjo",
+    region: "Blanco Macerado con Pieles • Curioso y Texturado",
     archetype: "El Vanguardista, Creativo y Descomplicado",
-    plain: "Un vino blanco macerado como un tinto: tiene perfume a cáscara de naranja, damasco y té en hebras con un agarre súper gastronómico.",
+    plain: "Un vino blanco macerado con sus pieles: tiene perfume a cáscara de naranja, damasco y té en hebras con un agarre súper gastronómico.",
     food: "Cocina especiada, platos orientales o picada artesanal.",
     cheese: "Quesos semiduros de cabra, Morbier o Pategrás.",
     acidez: 80,
@@ -510,13 +656,13 @@ const CUSTOM_TEMPLATES = {
     aroma: 92
   },
   espumante: {
-    name: "Espumante / Pet-Nat Argentino",
-    bottle: "Brut Nature / Pet-Nat de Altura",
+    name: "Espumante",
+    bottle: "Espumante",
     category: "blanco",
-    region: "Valle de Uco / Patagonia",
+    region: "Burbujas Finas, Vibrantes y Refrescantes",
     archetype: "El Celebrador Magnético y Chispeante",
     plain: "Burbujas finas y refrescantes que limpian el paladar al instante, con notas a manzana verde, pan tostado y cítricos.",
-    food: "Sushi, ostras, frituras delicadas o para abrir la noche.",
+    food: "Sushi, ostras, frituras delicadas o para celebrar toda la noche.",
     cheese: "Queso Brie joven, Burrata fresca o Gruyère suave.",
     acidez: 92,
     tanino: 15,
@@ -524,41 +670,27 @@ const CUSTOM_TEMPLATES = {
     aroma: 88
   },
   tannat: {
-    name: "Tannat / Petit Verdot de Altura",
-    bottle: "Tannat de los Valles Calchaquíes",
+    name: "Tannat",
+    bottle: "Tannat",
     category: "intenso",
-    region: "Cafayate (Salta) / Valle de Uco",
+    region: "Tinto Profundo y de Gran Estructura",
     archetype: "El Indomable, Profundo y Memorable",
-    plain: "Un tinto de color negro profundo, súper concentrado y potente, con sabor a mora madura, cacao amargo y especias de montaña.",
-    food: "Carnes de caza, asado a la cruz o guisos de invierno.",
+    plain: "Un tinto de color negro profundo, concentrado y potente, con notas a mora madura, cacao amargo y especias.",
+    food: "Carnes a la cruz, cordero o guisos de invierno.",
     cheese: "Sardo estacionado, Pepato o Reggianito.",
     acidez: 68,
     tanino: 92,
     cuerpo: 94,
     aroma: 85
   },
-  chardonnay: {
-    name: "Chardonnay de Altura / Viognier",
-    bottle: "Chardonnay Gualtallary (Calcáreo)",
-    category: "blanco",
-    region: "Gualtallary, Valle de Uco",
-    archetype: "El Equilibrado, Clásico y Refinado",
-    plain: "Un blanco con tensión mineral y volumen cremoso: combina fruta blanca fresca y avellanas con una frescura vibrante.",
-    food: "Salmón rosado, pastas con frutos de mar o aves grilladas.",
-    cheese: "Gruyère estacionado, Comté o Fontina.",
-    acidez: 84,
-    tanino: 22,
-    cuerpo: 72,
-    aroma: 86
-  },
   malbec_autor: {
-    name: "Malbec de Altura (Parcela Única)",
-    bottle: "Malbec Gualtallary / Paraje Altamira",
+    name: "Malbec",
+    bottle: "Malbec",
     category: "intenso",
-    region: "Valle de Uco, Mendoza",
+    region: "Tinto Expresivo, Frutal y Envolvente",
     archetype: "El Anfitrión Magnético y Apasionado",
-    plain: "Un Malbec de montaña fresco y expresivo: combina ciruelas rojas, violetas y una textura envolvente con final jugoso.",
-    food: "Ojo de bife a las brasas, empanadas al horno de barro o pastas.",
+    plain: "Un tinto expresivo y envolvente que combina ciruelas rojas, violetas y una textura amable con final jugoso.",
+    food: "Ojo de bife a las brasas, empanadas o pastas caseras.",
     cheese: "Provoleta a la parrilla, Pategrás o Gouda estacionado.",
     acidez: 74,
     tanino: 64,
@@ -628,10 +760,7 @@ function initState() {
   });
 
   try {
-    const saved =
-      localStorage.getItem(STORAGE_KEY_STATE) ||
-      localStorage.getItem("cepa_espejo_pro_state_v4") ||
-      localStorage.getItem("cepa_espejo_pro_state_v3");
+    const saved = localStorage.getItem(STORAGE_KEY_STATE);
     if (saved) {
       const parsed = JSON.parse(saved);
       if (parsed.eventName) appState.eventName = parsed.eventName;
@@ -832,7 +961,39 @@ function updateKioskLockUI() {
   }
 }
 
-// Vector Math Engine (Weighted 6D Euclidean Similarity + Contrast Calibration)
+// Psychological & Personality Matrix (4 Dimensions x 4 Options -> 12 Base Grapes/Styles)
+const PSYCH_MATRIX = [
+  // Q0: Tu Energía Social
+  [
+    { pinot: 3.6, semillon: 3.3, chardonnay: 2.9, rosado: 1.9 },
+    { cabfranc: 2.9, naranjo: 3.2, sauvblanc: 3.5, chardonnay: 2.2 },
+    { bonarda: 3.3, torrontes: 3.6, rosado: 2.8, criolla: 3.3, sauvblanc: 2.0 },
+    { syrah: 3.4, cabsauv: 3.5, cabfranc: 1.6, bonarda: 1.0 }
+  ],
+  // Q1: Tu Brújula Interior
+  [
+    { pinot: 3.5, chardonnay: 3.6, rosado: 2.6, semillon: 2.6 },
+    { naranjo: 3.5, cabfranc: 2.8, criolla: 3.4, syrah: 1.4 },
+    { torrontes: 3.8, sauvblanc: 3.8, rosado: 2.7, bonarda: 2.3, criolla: 2.2 },
+    { cabsauv: 3.6, syrah: 2.8, semillon: 3.0, chardonnay: 1.8 }
+  ],
+  // Q2: Tu Escenario Emocional
+  [
+    { pinot: 3.5, semillon: 3.5, chardonnay: 2.9, bonarda: 1.8, rosado: 1.5 },
+    { cabfranc: 3.1, naranjo: 3.3, pinot: 1.6, chardonnay: 2.0, sauvblanc: 1.5 },
+    { torrontes: 3.6, rosado: 2.9, sauvblanc: 3.5, criolla: 3.3, bonarda: 3.0 },
+    { syrah: 3.6, cabsauv: 3.3, cabfranc: 1.4, bonarda: 1.2 }
+  ],
+  // Q3: Tu Reflejo en la Copa
+  [
+    { pinot: 3.9, chardonnay: 3.6, semillon: 3.6, rosado: 1.7, bonarda: 1.4 },
+    { torrontes: 4.0, sauvblanc: 4.1, rosado: 3.3, criolla: 2.6 },
+    { bonarda: 3.8, naranjo: 3.6, cabfranc: 2.7, criolla: 2.8 },
+    { syrah: 3.7, cabsauv: 3.8, cabfranc: 2.1 }
+  ]
+];
+
+// Vector Math Engine (Weighted 6D Euclidean Similarity + Psychological Archetype Calibration)
 function computeUserVector() {
   if (userAnswers.length === 0) {
     return { ...CLASSIC_BASELINE };
@@ -858,115 +1019,118 @@ function computeUserVector() {
   const q3 = userAnswers.find((a) => a.qIndex === 3)?.optIndex ?? 0;
   const picks = [q0, q1, q2, q3];
 
-  const count0 = picks.filter((x) => x === 0).length;
-  const count1 = picks.filter((x) => x === 1).length;
-  const count2 = picks.filter((x) => x === 2).length;
-  const count3 = picks.filter((x) => x === 3).length;
+  const scores = {};
+  Object.keys(GRAPES).forEach((k) => {
+    if (!GRAPES[k].isCustom) scores[k] = 0;
+  });
 
-  const hasActiveCustomWhites = Object.keys(GRAPES).some(
-    (k) => GRAPES[k].isCustom && GRAPES[k].category === "blanco" && appState.activeGrapes[k]
+  picks.forEach((optIdx, qIdx) => {
+    const row = PSYCH_MATRIX[qIdx]?.[optIdx] || {};
+    Object.keys(row).forEach((k) => {
+      if (scores[k] !== undefined) scores[k] += row[k];
+    });
+  });
+
+  // Psychological Archetype Synergies
+  // 1. Pinot Noir: Intimate listener + aesthetic harmony/serene sunset + silky
+  if (q0 === 0 && (q1 === 0 || q2 === 0) && q3 !== 3) scores.pinot += 2.2;
+  if (q3 === 0 && q0 === 0 && q1 !== 3) scores.pinot += 1.6;
+
+  // 2. Chardonnay: Aesthetic harmony + ingenious/spontaneous + silky/vibrant
+  if (q1 === 0 && (q0 === 1 || q0 === 2) && (q3 === 0 || q3 === 1)) scores.chardonnay += 2.8;
+  if (q2 === 1 && q3 === 0) scores.chardonnay += 2.2;
+
+  // 3. Semillón: Serene/reflective + solid conviction or authentic + silky/enveloping
+  if ((q0 === 0 || q2 === 0) && (q1 === 3 || q1 === 1) && q3 === 0) scores.semillon += 3.0;
+  if (q1 === 3 && (q2 === 0 || q3 === 0)) scores.semillon += 2.4;
+
+  // 4. Rosado: Bridge between aesthetic harmony/subtlety and luminous freshness
+  if ((q0 === 0 || q1 === 0 || q2 === 0) && (q0 === 2 || q1 === 2 || q2 === 2) && (q3 === 1 || q3 === 0)) {
+    scores.rosado += 2.6;
+  }
+  if (q1 === 0 && q3 === 1) scores.rosado += 2.4;
+
+  // 5. Torrontés: Spontaneous/expressive + luminous freedom or outdoor + vibrant spark
+  if ((q0 === 2 || q0 === 0) && (q1 === 2 || q2 === 2) && (q3 === 1 || q3 === 2)) scores.torrontes += 2.6;
+  if (q1 === 2 && q2 === 2 && q0 !== 1) scores.torrontes += 2.2;
+
+  // 6. Sauvignon Blanc: Curious/ingenious + freedom/outdoor + vibrant citrus spark
+  if (q0 === 1 && (q1 === 2 || q2 === 2 || q3 === 1)) scores.sauvblanc += 2.8;
+  if (q1 === 2 && q3 === 1 && q0 !== 2) scores.sauvblanc += 2.2;
+
+  // 7. Vino Naranjo: Authentic exploration + creative studio + textured/juicy
+  if (q1 === 1 && (q2 === 1 || q3 === 2) && q3 !== 3) scores.naranjo += 2.4;
+  if (q0 === 1 && q3 === 2 && q2 !== 3) scores.naranjo += 2.0;
+
+  // 8. Cabernet Franc: Ingenious/curious + creative studio + firm/textured
+  if (q0 === 1 && q2 === 1 && (q1 === 3 || q3 === 3)) scores.cabfranc += 2.6;
+  if ((q0 === 3 || q1 === 3 || q3 === 3) && (q0 === 1 || q1 === 1 || q2 === 1)) scores.cabfranc += 2.0;
+
+  // 9. Bonarda: Spontaneous warmth + sunny midday / sunset + juicy fruit
+  if (q0 === 2 && q3 === 2 && q1 !== 1) scores.bonarda += 2.8;
+  if (q2 === 2 && q3 === 2 && q1 !== 1) scores.bonarda += 2.5;
+  if (q0 === 2 && q2 === 0 && q3 !== 1) scores.bonarda += 2.4;
+
+  // 10. Criolla Chica: Spontaneous/authentic + outdoor midday + light/juicy
+  if (q1 === 1 && q2 === 2 && q3 !== 3) scores.criolla += 2.9;
+  if (q0 === 2 && q1 === 1 && q3 !== 3) scores.criolla += 2.4;
+
+  // 11. Syrah vs 12. Cabernet Sauvignon
+  if (q2 === 3 && (q0 === 3 || q3 === 3 || q1 === 1 || q1 === 2)) scores.syrah += 2.4;
+  if (q1 === 3 && (q0 === 3 || q3 === 3) && q2 !== 3) scores.cabsauv += 2.6;
+  if (q0 === 3 && q1 === 3 && q2 === 3 && q3 === 3) scores.cabsauv += 1.5;
+
+  const activeKeys = getActiveGrapeKeys();
+  const activeBaseKeys = activeKeys.filter((k) => GRAPES[k] && !GRAPES[k].isCustom);
+  const activeCustomKeys = activeKeys.filter((k) => GRAPES[k] && GRAPES[k].isCustom);
+
+  // If ONLY custom wines/blends are active, return raw vector so Euclidean ranking picks the closest custom bottle
+  if (activeBaseKeys.length === 0 && activeCustomKeys.length > 0) {
+    return vec;
+  }
+
+  const allBaseKeys = Object.keys(scores).sort((a, b) => scores[b] - scores[a]);
+  const bestOverallKey = allBaseKeys[0];
+
+  const sortedActiveBase = (activeBaseKeys.length > 0 ? [...activeBaseKeys] : allBaseKeys).sort(
+    (a, b) => scores[b] - scores[a]
   );
-  const hasActiveCustomReds = Object.keys(GRAPES).some(
-    (k) => GRAPES[k].isCustom && GRAPES[k].category !== "blanco" && appState.activeGrapes[k]
-  );
+  const bestActiveKey = sortedActiveBase[0];
 
-  // 1. Criolla Chica (Tinto de sed: ultra-fresco, liviano, terraza al sol + sorbo sedoso/frutal)
-  if (
-    appState.activeGrapes.criolla &&
-    count3 <= 1 &&
-    ((q2 === 2 && q3 === 0) ||
-      (q0 === 0 && q2 === 2 && q1 !== 2 && q3 !== 2) ||
-      (q1 === 0 && q2 === 2 && q3 !== 3))
-  ) {
-    return { acidez: 82, tanino: 28, cuerpo: 39, aroma: 82, frescura: 92, guarda: 51 };
-  }
+  let targetGrape = GRAPES[bestActiveKey] || GRAPES[bestOverallKey];
 
-  // 2. Territorio Blancos Aromáticos vs Blancos Cremosos Gastronómicos
-  if (q1 === 2 && count3 <= 1) {
-    if (q0 === 2 || q2 === 1 || q3 === 1) {
-      if (appState.activeGrapes.semillon && !hasActiveCustomWhites) {
-        return { acidez: 74, tanino: 19, cuerpo: 72, aroma: 79, frescura: 82, guarda: 85 };
+  // If a custom wine/blend is active and matches the user's raw 6D vector more closely than the base winner, let it win
+  if (activeCustomKeys.length > 0 && targetGrape) {
+    const baseRawAff = calculateAffinityScore(vec, targetGrape);
+    activeCustomKeys.forEach((ck) => {
+      const cg = GRAPES[ck];
+      if (cg && calculateAffinityScore(vec, cg) >= baseRawAff + 1.5) {
+        targetGrape = cg;
       }
-      if (!hasActiveCustomWhites && appState.activeGrapes.torrontes && (q0 === 0 || q2 === 2 || q3 === 2)) {
-        return { acidez: 80, tanino: 15, cuerpo: 50, aroma: 97, frescura: 94, guarda: 56 };
-      }
-      return {
-        acidez: Math.max(76, vec.acidez),
-        tanino: 20,
-        cuerpo: Math.max(66, Math.min(74, vec.cuerpo + 6)),
-        aroma: Math.max(84, vec.aroma),
-        frescura: 84,
-        guarda: Math.max(74, vec.guarda)
-      };
-    }
-    if (!hasActiveCustomWhites && appState.activeGrapes.torrontes) {
-      return { acidez: 80, tanino: 15, cuerpo: 50, aroma: 97, frescura: 94, guarda: 56 };
-    }
-    return {
-      acidez: Math.min(94, vec.acidez + 8),
-      tanino: 16,
-      cuerpo: Math.min(54, vec.cuerpo),
-      aroma: Math.min(97, vec.aroma + 6),
-      frescura: 94,
-      guarda: 56
-    };
+    });
   }
 
-  if ((q0 === 0 && q2 === 2 && q3 === 2) || (q0 === 1 && q2 === 2 && q3 === 2 && q1 === 0) || (q0 === 0 && q1 === 0 && q3 === 2)) {
-    return { acidez: 80, tanino: 16, cuerpo: 50, aroma: 97, frescura: 94, guarda: 56 };
-  }
-  if (appState.activeGrapes.semillon && !hasActiveCustomWhites && q0 === 2 && q1 === 0 && (q2 === 0 || q2 === 1)) {
-    return { acidez: 74, tanino: 19, cuerpo: 72, aroma: 79, frescura: 82, guarda: 85 };
-  }
-
-  // 3. Territorio Intenso & Estructurado (Syrah Nocturno/Especiado vs Cabernet Sauvignon Clásico/Firme)
-  if (count3 >= 2 || (q3 === 3 && (q0 === 3 || q1 === 3 || q2 === 3)) || (q0 === 3 && q1 === 3) || (q1 === 3 && q2 === 3)) {
-    const syrahScore = (q2 === 3 ? 2.2 : 0) + (q3 === 3 ? 1.6 : 0) + (q0 === 2 || q1 === 0 ? 0.8 : 0);
-    const cabSauvScore = (q0 === 3 ? 2.0 : 0) + (q1 === 3 ? 1.7 : 0) + (q2 === 1 || q3 === 1 ? 1.5 : 0);
-
-    if (syrahScore >= cabSauvScore) {
-      return { acidez: 63, tanino: 82, cuerpo: 90, aroma: 86, frescura: 59, guarda: 88 };
-    } else {
-      return { acidez: 70, tanino: 90, cuerpo: 90, aroma: 80, frescura: 64, guarda: 94 };
-    }
-  }
-
-  if (count3 === 1) {
-    if (q2 === 3 && (q1 === 1 || q0 === 2)) {
-      return { acidez: 63, tanino: 82, cuerpo: 89, aroma: 86, frescura: 59, guarda: 88 };
-    }
-    if ((q0 === 3 && q2 === 1 && q3 === 1) || (q1 === 3 && q2 === 1 && q3 === 1)) {
-      return { acidez: 70, tanino: 89, cuerpo: 89, aroma: 81, frescura: 64, guarda: 93 };
-    }
-  }
-
-  // 4. Territorio Cálido, Jugoso & Sociable (Bonarda Argentina)
+  // If the theoretical overall winner is inactive AND from a totally different sensory family than any active bottle,
+  // preserve its signal so the Vinoteca Tip banner can suggest it while still serving the closest active bottle
   if (
-    count2 >= 2 ||
-    (q3 === 2 && (q0 === 2 || q1 === 0 || q1 === 1 || q2 === 2)) ||
-    (q0 === 2 && q2 === 2) ||
-    (q0 === 2 && q1 === 1 && q3 !== 1)
+    bestOverallKey !== bestActiveKey &&
+    GRAPES[bestOverallKey] &&
+    GRAPES[bestActiveKey] &&
+    calculateAffinityScore(GRAPES[bestOverallKey], GRAPES[bestActiveKey]) < 78
   ) {
-    return { acidez: 68, tanino: 46, cuerpo: 64, aroma: 80, frescura: 76, guarda: 62 };
+    targetGrape = GRAPES[bestOverallKey];
   }
 
-  // 5. Territorio Herbal, Eléctrico & Gastronómico (Cabernet Franc o Blend de Tintas)
-  if (count1 >= 2 || (q3 === 1 && (q0 === 1 || q1 === 1 || q2 === 1))) {
-    if (hasActiveCustomReds && (q0 === 2 || q0 === 3 || q1 === 3 || q2 === 3)) {
-      return { acidez: 75, tanino: 75, cuerpo: 81, aroma: 88, frescura: 78, guarda: 86 };
-    }
-    return { acidez: 76, tanino: 72, cuerpo: 76, aroma: 88, frescura: 80, guarda: 85 };
-  }
+  if (!targetGrape) return vec;
 
-  // 6. Territorio Sutil, Elegante & Sedoso (Pinot Noir)
-  if (count0 >= 2 || (q3 === 0 && (q0 === 0 || q1 === 0 || q2 === 0))) {
-    return { acidez: 86, tanino: 32, cuerpo: 45, aroma: 90, frescura: 88, guarda: 78 };
-  }
-
-  return vec;
+  const finalVec = {};
+  AXES_META.forEach((m) => {
+    finalVec[m.key] = Math.round(targetGrape[m.key] * 0.9 + vec[m.key] * 0.1);
+  });
+  return finalVec;
 }
 
-// Síntesis Personalizada: explica al invitado cómo sus 4 respuestas cotidianas llevaron a su cepa
+// Síntesis Psicológica Personalizada: conecta las 4 dimensiones elegidas con la cepa
 function buildPersonalSynthesis(grape) {
   if (!userAnswers || userAnswers.length < 4 || isPartnerPass) {
     return grape.malbecBridge;
@@ -977,31 +1141,31 @@ function buildPersonalSynthesis(grape) {
   const q3 = userAnswers.find((a) => a.qIndex === 3)?.optIndex ?? 0;
 
   const traitsQ0 = [
-    "los aromas delicados del té en hebras o el café filtrado",
-    "el carácter herbal del mate amargo",
-    "la calidez amable del café cremoso o el mate suave",
-    "la intensidad firme de un espresso bien negro"
+    "conectar desde la escucha sutil y la charla íntima",
+    "vincular desde la curiosidad, el ingenio y las ideas nuevas",
+    "contagiar espontaneidad, risa y frescura al llegar",
+    "transmitir presencia firme, magnetismo e intensidad"
   ];
   const traitsQ1 = [
-    "la suavidad cremosa del Brie o el chocolate con frutos rojos",
-    "la chispa sabrosa de la provoleta con orégano",
-    "la frescura vibrante de la burrata y los cítricos",
-    "la fuerza de los quesos duros picantes y el cacao amargo"
+    "la búsqueda de armonía estética y cuidado del detalle",
+    "el impulso de explorar lo auténtico y fuera de serie",
+    "la libertad, el movimiento y la energía luminosa",
+    "la convicción firme y lo que trasciende en el tiempo"
   ];
   const traitsQ2 = [
-    "la calma íntima de una cabaña junto al lago",
-    "la originalidad de un bar oculto o cena gourmet",
-    "la energía luminosa de una terraza o asado al sol",
-    "el magnetismo nocturno de un fogón bajo las estrellas"
+    "la calma de un atardecer sereno con luz cálida",
+    "la vibra creativa de los vinilos o un bar oculto de autor",
+    "la vitalidad de un mediodía radiante al aire libre",
+    "el misterio de una noche cerrada junto al fuego"
   ];
   const traitsQ3 = [
-    "una caricia sedosa y liviana",
-    "buen cuerpo con un final fresco",
-    "pura fruta jugosa y perfumada",
-    "intensidad especiada que deje huella"
+    "una caricia sutil, sedosa y envolvente",
+    "una chispa vibrante, fresca y luminosa",
+    "una expresión jugosa y con textura diferente",
+    "un carácter profundo, especiado y de huella larga"
   ];
 
-  return `Elegiste ${traitsQ0[q0]}, ${traitsQ1[q1]} y ${traitsQ2[q2]}, buscando en tu copa ${traitsQ3[q3]}. ${grape.malbecBridge}`;
+  return `Tu personalidad combina ${traitsQ0[q0]}, ${traitsQ1[q1]} y ${traitsQ2[q2]}, buscando en la copa ${traitsQ3[q3]}. ${grape.malbecBridge}`;
 }
 
 function calculateAffinityScore(userVec, grapeObj) {
@@ -1827,7 +1991,7 @@ function saveCustomGrapeToCava() {
   const name = (document.getElementById("cg-name")?.value || "").trim();
   const bottle = (document.getElementById("cg-bottle")?.value || "").trim();
   const category = document.getElementById("cg-category")?.value || "intenso";
-  const region = (document.getElementById("cg-region")?.value || "").trim() || "Argentina • Selección del Sommelier";
+  const region = (document.getElementById("cg-region")?.value || "").trim() || "Estilo de Autor • Selección del Sommelier";
   const archetype = (document.getElementById("cg-archetype")?.value || "").trim() || "El Sofisticado, Curioso y Armónico";
   const plainFeel =
     (document.getElementById("cg-plain")?.value || "").trim() ||
@@ -1837,7 +2001,7 @@ function saveCustomGrapeToCava() {
     "Carnes braseadas, pastas artesanales o platos de estación.";
   const cheese =
     (document.getElementById("cg-cheese")?.value || "").trim() ||
-    (category === "blanco"
+    (category === "blanco" || category === "rosado_naranjo"
       ? "Queso Brie cremoso, Camembert o queso de cabra."
       : "Provoleta dorada, Fontina o quesos de mediana guarda.");
 
@@ -1851,15 +2015,15 @@ function saveCustomGrapeToCava() {
   const cuerpo = Number(document.getElementById("cg-cuerpo")?.value || 78);
   const aroma = Number(document.getElementById("cg-aroma")?.value || 88);
 
-  // Calibrated 6D derivation so custom Red Blends and White Blends compete fairly on all 6 axes
+  // Calibrated 6D derivation so custom Red Blends, White Blends, Rosados and Naranjos compete fairly on all 6 axes
   const frescura =
-    category === "blanco"
+    category === "blanco" || category === "rosado_naranjo"
       ? Math.min(96, Math.max(72, Math.round(acidez * 0.85 + (100 - tanino) * 0.18)))
       : Math.min(92, Math.max(58, Math.round(acidez * 0.88 + (100 - tanino) * 0.28)));
   const guarda = Math.min(96, Math.max(52, Math.round(cuerpo * 0.62 + tanino * 0.38)));
 
   const customId = editingId && appState.customGrapes?.[editingId] ? editingId : "custom_" + Date.now();
-  const finalBottle = bottle || `${name} (Selección del Evento)`;
+  const finalBottle = bottle || name;
 
   const bodyPill =
     cuerpo >= 78 ? "🍷 Cuerpo Envolvente" : cuerpo >= 58 ? "✨ Equilibrio Armónico" : "🌊 Paso Súper Fluido";
@@ -1867,7 +2031,7 @@ function saveCustomGrapeToCava() {
     acidez >= 80 ? "⚡ Frescura Vibrante" : tanino >= 72 ? "🔥 Carácter Firme" : "🍒 Textura Amable";
 
   const bridgeCopy =
-    category === "blanco"
+    category === "blanco" || category === "rosado_naranjo"
       ? `Conecta con tu lado curioso y luminoso: equilibra una frescura limpia que despierta el paladar con una textura envolvente y muy gastronómica.`
       : tanino >= 70
       ? `Encaja con tu búsqueda de presencia y armonía: une volumen sabroso en el centro de la boca con capas aromáticas complejas y un final largo.`
@@ -1886,12 +2050,14 @@ function saveCustomGrapeToCava() {
     auraGradient:
       category === "blanco"
         ? "linear-gradient(135deg, #ca8a04 0%, #064e3b 100%)"
+        : category === "rosado_naranjo"
+        ? "linear-gradient(135deg, #ea580c 0%, #701a75 100%)"
         : "linear-gradient(135deg, #9d174d 0%, #3b0764 100%)",
     archetype,
     region,
     signaturePills: ["✨ Corte de Autor", bodyPill, freshPill],
     plainFeel,
-    mirrorHook: `Tu paladar busca equilibrio y carácter propio: conectás de inmediato con vinos pensados al detalle que combinan ${
+    mirrorHook: `Tu personalidad busca equilibrio y carácter propio: conectás de inmediato con vinos pensados al detalle que combinan ${
       tanino > 60 ? "estructura envolvente" : "textura amable y fluida"
     } con gran expresión aromática.`,
     malbecBridge: bridgeCopy,
@@ -1905,13 +2071,21 @@ function saveCustomGrapeToCava() {
     food,
     cheese,
     infusion:
-      category === "blanco"
+      category === "blanco" || category === "rosado_naranjo"
         ? "Té en hebras cítrico/floral o café filtrado suave."
         : tanino > 65
         ? "Café espresso intenso o mate amargo con hierbas."
         : "Café cremoso o mate suave en ronda.",
-    service: category === "blanco" ? "9 °C – 11 °C • Copa de blanco / universal." : "15 °C – 17 °C • Copa Burdeos / universal.",
-    blindSight: category === "blanco" ? "Brillante con reflejos dorados/acerados." : "Rojo rubí profundo con matices vivos.",
+    service:
+      category === "blanco" || category === "rosado_naranjo"
+        ? "9 °C – 12 °C • Copa de blanco / universal."
+        : "15 °C – 17 °C • Copa Burdeos / universal.",
+    blindSight:
+      category === "blanco"
+        ? "Brillante con reflejos dorados/acerados."
+        : category === "rosado_naranjo"
+        ? "Reflejos rosados cobrizos a ámbar brillante."
+        : "Rojo rubí profundo con matices vivos.",
     blindNose: `Expresión aromática (${aroma}/100) con capas frutales y de crianza armónica.`,
     blindPalate: `Acidez ${acidez}/100, textura tánica ${tanino}/100 y volumen en boca ${cuerpo}/100.`
   };
@@ -2021,8 +2195,12 @@ function applyCavaPreset(preset) {
       appState.activeGrapes[k] = true;
     } else if (preset === "all6") {
       appState.activeGrapes[k] = !GRAPES[k].isCustom && GRAPES[k].defaultActive;
+    } else if (preset === "blancos_rosados") {
+      appState.activeGrapes[k] =
+        GRAPES[k].category === "blanco" || GRAPES[k].category === "rosado_naranjo";
     } else if (preset === "tintos") {
-      appState.activeGrapes[k] = GRAPES[k].category !== "blanco";
+      appState.activeGrapes[k] =
+        GRAPES[k].category === "sutil" || GRAPES[k].category === "intenso";
     } else if (preset === "custom_only") {
       appState.activeGrapes[k] = !!GRAPES[k].isCustom;
     }
@@ -2107,7 +2285,7 @@ async function exportB2BEventReport() {
 function setCatalogFilter(cat) {
   vibrate(8);
   catalogFilter = cat;
-  ["all", "sutil", "intenso", "blanco"].forEach((c) => {
+  ["all", "sutil", "intenso", "blanco", "rosado_naranjo"].forEach((c) => {
     const btn = document.getElementById(`cat-filter-${c}`);
     if (btn) {
       btn.style.background = c === cat ? "var(--gold-main)" : "rgba(0,0,0,0.35)";
@@ -2279,6 +2457,8 @@ function computeOracleResult() {
     if (oracleAnswers[1] === 2 && g.frescura >= 78) scores[k] += 4;
     if (oracleAnswers[1] === 3 && g.cuerpo >= 80) scores[k] += 4;
 
+    if (oracleAnswers[2] === 0 && g.category === "rosado_naranjo") scores[k] += 4;
+    if (oracleAnswers[2] === 1 && g.category === "rosado_naranjo") scores[k] += 4;
     if (oracleAnswers[2] === 2 && g.category === "blanco") scores[k] += 5;
     if (oracleAnswers[2] === 3 && g.tanino >= 70) scores[k] += 4;
   });
